@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mau Jadi Pacar Aku?</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:Poppins,sans-serif;background:radial-gradient(circle at 20% 20%,#ffd7e6 0,transparent 30%),radial-gradient(circle at 80% 80%,#ffc4db 0,transparent 30%),linear-gradient(135deg,#fff4f8,#ffdce9)}
+.card{width:min(92%,430px);padding:38px 27px 32px;text-align:center;background:rgba(255,255,255,.86);border:1px solid rgba(255,255,255,.9);border-radius:30px;box-shadow:0 25px 70px rgba(170,40,90,.2);backdrop-filter:blur(18px);position:relative;z-index:5;animation:in .7s ease}
+@keyframes in{from{opacity:0;transform:translateY(25px) scale(.96)}to{opacity:1;transform:none}}
+.icon{width:78px;height:78px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;border-radius:24px;color:#fff;font-size:32px;background:linear-gradient(135deg,#ff4f81,#ff8eae);box-shadow:0 12px 30px rgba(255,79,129,.3);animation:beat 1.5s infinite}
+@keyframes beat{50%{transform:scale(1.07)}}
+h1{color:#25252b;font-size:27px;line-height:1.3;font-weight:800;margin-bottom:12px}
+.pink{color:#ff477d}.desc{color:#85858e;font-size:14px;line-height:1.7;margin-bottom:28px}
+.buttons{height:56px;display:flex;align-items:center;justify-content:center;gap:12px}
+button{border:0;font:600 14px Poppins,sans-serif;padding:14px 23px;border-radius:16px;cursor:pointer;white-space:nowrap;transition:.2s}
+#yes{color:#fff;background:linear-gradient(135deg,#ff4f81,#e9366b);box-shadow:0 9px 22px rgba(255,79,129,.3)}
+#yes:hover{transform:translateY(-3px) scale(1.03)}
+#no{color:#555;background:#eeeef2}
+.success{display:none}.success h1{color:#e9366b}.success p{color:#777;line-height:1.8;font-size:14px}.sign{margin-top:20px;color:#ff477d;font-size:13px;font-weight:600}
+.bg{position:fixed;color:rgba(255,79,129,.12);font-size:38px;bottom:-50px;animation:up 7s linear infinite;z-index:1}
+@keyframes up{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.love{position:fixed;bottom:-40px;color:#ff477d;z-index:20;animation:love 4s linear forwards;pointer-events:none}
+@keyframes love{0%{opacity:0;transform:translateY(0) scale(.7)}15%{opacity:1}100%{opacity:0;transform:translateY(-115vh) scale(1.5) rotate(25deg)}}
+@media(max-width:400px){h1{font-size:24px}.card{padding:32px 20px 28px}button{padding:13px 19px}}
+</style>
+</head>
+<body>
+<div class="bg" style="left:8%;animation-delay:0s"><i class="fa-solid fa-heart"></i></div>
+<div class="bg" style="left:30%;animation-delay:2s"><i class="fa-solid fa-heart"></i></div>
+<div class="bg" style="left:65%;animation-delay:1s"><i class="fa-solid fa-heart"></i></div>
+<div class="bg" style="left:88%;animation-delay:3s"><i class="fa-solid fa-heart"></i></div>
+
+<section class="card" id="question">
+  <div class="icon"><i class="fa-solid fa-heart"></i></div>
+  <h1>Mau nggak jadi <span class="pink">pacar aku?</span></h1>
+  <p class="desc">Ada satu pertanyaan penting buat kamu.<br>Jawab dengan jujur ya... 💗</p>
+  <div class="buttons">
+    <button id="yes"><i class="fa-solid fa-heart"></i> &nbsp;Ya, mau!</button>
+    <button id="no"><i class="fa-solid fa-xmark"></i> &nbsp;Tidak</button>
+  </div>
+</section>
+
+<section class="card success" id="success">
+  <div class="icon"><i class="fa-solid fa-heart"></i></div>
+  <h1>Yeay! <span class="pink">💗</span></h1>
+  <p>Terima kasih sudah memilih <b>“Ya”</b>.<br>Semoga kita bisa membuat banyak cerita indah bersama. ✨</p>
+  <div class="sign"><i class="fa-solid fa-heart"></i> Dengan penuh rasa sayang</div>
+</section>
+
+<script>
+const no=document.getElementById('no'),yes=document.getElementById('yes');
+function kabur(){
+  no.style.position='fixed';
+  const pad=15;
+  const x=pad+Math.random()*(innerWidth-no.offsetWidth-pad*2);
+  const y=pad+Math.random()*(innerHeight-no.offsetHeight-pad*2);
+  no.style.left=x+'px'; no.style.top=y+'px';
+}
+no.addEventListener('mouseenter',kabur);
+no.addEventListener('touchstart',e=>{e.preventDefault();kabur()},{passive:false});
+no.addEventListener('click',e=>{e.preventDefault();kabur()});
+yes.onclick=()=>{
+  document.getElementById('question').style.display='none';
+  document.getElementById('success').style.display='block';
+  for(let i=0;i<45;i++) setTimeout(()=>{
+    const h=document.createElement('div');
+    h.className='love';
+    h.innerHTML='<i class="fa-solid fa-heart"></i>';
+    h.style.left=Math.random()*100+'vw';
+    h.style.fontSize=14+Math.random()*22+'px';
+    h.style.animationDuration=3+Math.random()*3+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6500);
+  },i*70);
+};
+</script>
+</body>
+</html>
