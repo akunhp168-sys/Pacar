@@ -7,136 +7,165 @@
 <style>
   *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
   html, body{ height:100%; background:#000; overflow:hidden; }
-  body{
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  body{ font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+
+  .screen{
+    position:fixed; inset:0;
+    transition: transform .4s cubic-bezier(.25,.9,.35,1), opacity .3s ease;
   }
 
-  .viewport{
-    position:fixed; inset:0;
-    display:flex; align-items:center; justify-content:center;
-    background:#000;
+  /* ---------- SCREEN 1: KAMERA ---------- */
+  #screenCamera{ background:#000; z-index:1; }
+  .viewport{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:#000; }
+  video{ width:100%; height:100%; object-fit:cover; display:block; transform: scaleX(-1); }
+
+  .scan-line{
+    position:fixed; left:0; right:0; height:3px;
+    background:#fff; box-shadow:0 0 20px 4px rgba(255,255,255,0.8);
+    top:0; display:none; z-index:2;
   }
-  video, img.shot{
-    width:100%; height:100%; object-fit:cover; display:block;
+  .scanning .scan-line{ display:block; animation: sweep 1s linear infinite; }
+  @keyframes sweep{ 0%{ top:0% } 100%{ top:100% } }
+  .scan-tint{
+    position:fixed; inset:0; background:rgba(255,255,255,0); z-index:1; pointer-events:none;
+    transition: background .2s ease;
   }
-  video.hidden, img.shot.hidden{ display:none; }
-  /* mirror the live preview like a selfie camera */
-  video{ transform: scaleX(-1); }
+  .scanning .scan-tint{ background: rgba(120,255,180,0.08); }
 
   .top-bar{
-    position:fixed; top:0; left:0; right:0;
+    position:fixed; top:0; left:0; right:0; z-index:3;
     padding: calc(env(safe-area-inset-top, 16px) + 6px) 20px 14px;
     display:flex; justify-content:center;
     background: linear-gradient(180deg, rgba(0,0,0,0.55), transparent);
   }
-  .top-bar span{
-    color:#fff; font-size:13px; font-weight:600; letter-spacing:.02em;
-    opacity:.9;
+  .top-bar span{ color:#fff; font-size:13px; font-weight:600; letter-spacing:.02em; opacity:.9; }
+
+  .scan-status{
+    position:fixed; top:50%; left:0; right:0; transform:translateY(-50%);
+    text-align:center; color:#fff; font-size:13px; font-weight:600;
+    letter-spacing:.15em; text-transform:uppercase; opacity:0; z-index:3;
+    transition: opacity .2s ease;
   }
+  .scanning .scan-status{ opacity:.85; }
 
   .controls{
-    position:fixed; left:0; right:0; bottom:0;
+    position:fixed; left:0; right:0; bottom:0; z-index:3;
     padding: 22px 24px calc(env(safe-area-inset-bottom, 18px) + 22px);
     display:flex; align-items:center; justify-content:center;
     background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent);
   }
-
-  .shutter{
-    width:74px; height:74px; border-radius:50%;
-    background:transparent;
-    border:4px solid #fff;
-    padding:4px;
-    cursor:pointer;
-  }
-  .shutter-inner{
-    width:100%; height:100%; border-radius:50%; background:#fff;
-    transition: transform .15s ease, border-radius .15s ease;
-  }
+  .shutter{ width:74px; height:74px; border-radius:50%; background:transparent; border:4px solid #fff; padding:4px; cursor:pointer; }
+  .shutter-inner{ width:100%; height:100%; border-radius:50%; background:#fff; transition: transform .15s ease; }
   .shutter:active .shutter-inner{ transform: scale(.82); }
   .shutter:disabled{ opacity:.4; }
 
-  .retake{
-    position:fixed; bottom:0; left:0; right:0;
-    padding: 22px 24px calc(env(safe-area-inset-bottom, 18px) + 22px);
-    display:none; align-items:center; justify-content:center;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent);
-  }
-  .retake.show{ display:flex; }
-  .retake button{
-    background: rgba(255,255,255,0.14);
-    color:#fff; border:1px solid rgba(255,255,255,0.3);
-    padding:12px 22px; border-radius:30px;
-    font-size:14px; font-weight:600;
-    backdrop-filter: blur(6px);
-  }
+  .error{ position:fixed; top:50%; left:20px; right:20px; transform:translateY(-50%); color:#fff; text-align:center; font-size:14px; opacity:.8; z-index:3; }
 
-  .error{
-    position:fixed; top:50%; left:20px; right:20px; transform:translateY(-50%);
-    color:#fff; text-align:center; font-size:14px; opacity:.8;
-  }
-
-  /* bottom sheet with kodam result */
-  .sheet{
-    position:fixed; left:0; right:0; bottom:0;
-    background:#fff; border-radius:20px 20px 0 0;
-    padding: 22px 22px calc(env(safe-area-inset-bottom, 18px) + 22px);
+  /* ---------- SCREEN 2: HASIL ---------- */
+  #screenResult{
+    background:#0e0e0e;
     transform: translateY(100%);
-    transition: transform .32s cubic-bezier(.25,.9,.35,1);
-    box-shadow: 0 -8px 30px rgba(0,0,0,0.3);
+    z-index:2;
+    display:flex; flex-direction:column; align-items:center;
+    padding: calc(env(safe-area-inset-top,16px) + 20px) 24px calc(env(safe-area-inset-bottom,16px) + 24px);
   }
-  .sheet.show{ transform: translateY(0); }
-  .sheet-handle{
-    width:36px; height:4px; background:#ddd; border-radius:2px;
-    margin: 0 auto 16px;
+  #screenResult.show{ transform: translateY(0); }
+
+  .result-title{ color:#fff; font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; opacity:.5; margin-bottom:18px; }
+
+  /* Slot catbox: ganti gambar di sini nanti.
+     - Taruh file gambar catbox kamu (misalnya "catbox.png") di folder yang sama dengan HTML ini.
+     - Ganti src pada <img id="catboxFrame"> di bawah jadi "catbox.png".
+     - Foto hasil scan otomatis muncul di lapisan #resultPhoto, di belakang/di dalam bingkai catbox. */
+  .catbox-stage{
+    position:relative;
+    width:100%; max-width:320px; aspect-ratio:1/1;
+    margin-bottom:22px;
   }
-  .kodam-name{ font-size:18px; font-weight:700; color:#111; margin-bottom:6px; }
-  .kodam-desc{ font-size:14px; color:#777; line-height:1.55; margin-bottom:18px; }
-  .sheet button{
-    width:100%; padding:14px; border:none; border-radius:12px;
-    background:#111; color:#fff; font-size:15px; font-weight:600;
+  #resultPhoto{
+    position:absolute; inset:8%;
+    width:84%; height:84%; object-fit:cover;
+    border-radius:6px;
   }
+  #catboxFrame{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:contain; pointer-events:none;
+  }
+  /* placeholder bingkai kalau belum ada gambar catbox */
+  .catbox-placeholder{
+    position:absolute; inset:0;
+    border:10px solid #7a4a1f;
+    border-radius:10px;
+    box-shadow: inset 0 0 0 3px #5c3714;
+    pointer-events:none;
+  }
+  .catbox-placeholder::after{
+    content:"📦 ganti dengan gambar catbox-mu";
+    position:absolute; bottom:-26px; left:0; right:0;
+    text-align:center; font-size:10px; color:#666;
+  }
+
+  .kodam-name{ color:#fff; font-size:19px; font-weight:700; text-align:center; margin-bottom:8px; }
+  .kodam-desc{ color:#999; font-size:14px; line-height:1.6; text-align:center; margin-bottom:26px; max-width:320px; }
+
+  .again{ width:100%; max-width:320px; padding:14px; border:none; border-radius:12px; background:#fff; color:#111; font-size:15px; font-weight:600; }
 </style>
 </head>
 <body>
 
-<div class="viewport">
-  <video id="video" autoplay playsinline muted></video>
-  <img id="photo" class="shot hidden" alt="hasil scan">
+<!-- SCREEN 1: KAMERA -->
+<div class="screen" id="screenCamera">
+  <div class="viewport"><video id="video" autoplay playsinline muted></video></div>
+  <div class="scan-tint"></div>
+  <div class="scan-line"></div>
+  <div class="top-bar"><span>Kodam Scanner</span></div>
+  <div class="scan-status" id="scanStatus">MENGANALISIS AURA...</div>
+  <div id="err" class="error"></div>
+  <div class="controls">
+    <button class="shutter" id="scanBtn" onclick="scan()"><div class="shutter-inner"></div></button>
+  </div>
 </div>
 
-<div class="top-bar"><span>Kodam Scanner</span></div>
+<!-- SCREEN 2: HASIL -->
+<div class="screen" id="screenResult">
+  <div class="result-title">Hasil Pemindaian</div>
 
-<div id="err" class="error"></div>
+  <div class="catbox-stage">
+    <img id="resultPhoto" src="" alt="hasil scan">
+    <!-- ganti src di bawah ini dengan gambar catbox kamu, mis: "catbox.png" -->
+    <img id="catboxFrame" src="" alt="" style="display:none;">
+    <div class="catbox-placeholder" id="catboxPlaceholder"></div>
+  </div>
 
-<div class="controls" id="controls">
-  <button class="shutter" id="scanBtn" onclick="scan()">
-    <div class="shutter-inner"></div>
-  </button>
-</div>
-
-<div class="retake" id="retakeBar">
-  <button onclick="retry()">Ulangi</button>
-</div>
-
-<div class="sheet" id="sheet">
-  <div class="sheet-handle"></div>
   <div class="kodam-name" id="kodamName"></div>
   <p class="kodam-desc" id="kodamDesc"></p>
-  <button onclick="retry()">Scan Lagi</button>
+  <button class="again" onclick="retry()">Scan Lagi</button>
 </div>
 
 <script>
 const video = document.getElementById('video');
-const photo = document.getElementById('photo');
 const scanBtn = document.getElementById('scanBtn');
-const controls = document.getElementById('controls');
-const retakeBar = document.getElementById('retakeBar');
-const sheet = document.getElementById('sheet');
+const screenCamera = document.getElementById('screenCamera');
+const screenResult = document.getElementById('screenResult');
+const scanStatus = document.getElementById('scanStatus');
 const err = document.getElementById('err');
 
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
-  .then(stream => { video.srcObject = stream; })
-  .catch(() => { err.textContent = "Gak bisa akses kamera. Cek izin kamera di browser."; scanBtn.disabled = true; });
+if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+  err.textContent = "Browser ini gak support akses kamera lewat file lokal. Coba jalankan file-nya lewat server (http/https), bukan dibuka langsung.";
+  scanBtn.disabled = true;
+} else {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+    .then(stream => { video.srcObject = stream; })
+    .catch((e) => {
+      let msg = "Gak bisa akses kamera (" + e.name + ").";
+      if (e.name === "NotAllowedError") msg = "Izin kamera ditolak. Buka pengaturan situs di browser lalu izinkan Camera.";
+      else if (e.name === "NotFoundError") msg = "Kamera gak ketemu di perangkat ini.";
+      else if (e.name === "NotReadableError") msg = "Kamera lagi dipakai aplikasi lain. Tutup app lain yang pakai kamera.";
+      else if (e.name === "SecurityError") msg = "Halaman ini harus dibuka lewat https:// atau localhost, bukan file lokal, biar kamera bisa aktif.";
+      err.textContent = msg;
+      scanBtn.disabled = true;
+    });
+}
 
 const jenis = ["Naga","Harimau","Garuda","Buaya Putih","Kera Sakti","Elang Hitam","Kucing Oren","Komodo","Singa","Lele Jumbo"];
 const sifat = ["Api Kahyangan","Petir Selatan","Embun Subuh","Angin Puting Beliung","Cahaya Senja","Bara Merapi","Kabut Merapat","Taring Perak"];
@@ -151,37 +180,42 @@ const deskripsi = [
 ];
 function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
 
+const scanMsgs = ["MENGANALISIS AURA...","MELACAK FREKUENSI GAIB...","MENCOCOKKAN LELUHUR...","HAMPIR SELESAI..."];
+
 function scan(){
   scanBtn.disabled = true;
+  screenCamera.classList.add('scanning');
+
+  let mi = 0;
+  const msgInterval = setInterval(()=>{
+    mi = (mi+1) % scanMsgs.length;
+    scanStatus.textContent = scanMsgs[mi];
+  }, 450);
 
   setTimeout(()=>{
+    clearInterval(msgInterval);
+    screenCamera.classList.remove('scanning');
+
+    // ambil foto dari video
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     const ctx = canvas.getContext('2d');
-    // mirror capture to match preview
     ctx.translate(canvas.width, 0);
     ctx.scale(-1, 1);
     ctx.drawImage(video, 0, 0);
-    photo.src = canvas.toDataURL('image/jpeg');
-
-    video.classList.add('hidden');
-    photo.classList.remove('hidden');
-    controls.style.display = 'none';
+    document.getElementById('resultPhoto').src = canvas.toDataURL('image/jpeg');
 
     document.getElementById('kodamName').textContent = `Kodam ${pick(jenis)} ${pick(sifat)} ${pick(gelar)}`;
     document.getElementById('kodamDesc').textContent = pick(deskripsi);
 
-    sheet.classList.add('show');
-  }, 250);
+    screenResult.classList.add('show');
+    scanBtn.disabled = false;
+  }, 1800);
 }
 
 function retry(){
-  sheet.classList.remove('show');
-  photo.classList.add('hidden');
-  video.classList.remove('hidden');
-  controls.style.display = 'flex';
-  scanBtn.disabled = false;
+  screenResult.classList.remove('show');
 }
 </script>
 
