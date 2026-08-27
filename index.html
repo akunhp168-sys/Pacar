@@ -9,10 +9,7 @@
   html, body{ height:100%; background:#000; overflow:hidden; }
   body{ font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
 
-  .screen{
-    position:fixed; inset:0;
-    transition: transform .4s cubic-bezier(.25,.9,.35,1), opacity .3s ease;
-  }
+  .screen{ position:fixed; inset:0; transition: transform .4s cubic-bezier(.25,.9,.35,1); }
 
   /* ---------- SCREEN 1: KAMERA ---------- */
   #screenCamera{ background:#000; z-index:1; }
@@ -66,49 +63,44 @@
     background:#0e0e0e;
     transform: translateY(100%);
     z-index:2;
-    display:flex; flex-direction:column; align-items:center;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding: calc(env(safe-area-inset-top,16px) + 20px) 24px calc(env(safe-area-inset-bottom,16px) + 24px);
   }
   #screenResult.show{ transform: translateY(0); }
 
-  .result-title{ color:#fff; font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; opacity:.5; margin-bottom:18px; }
+  .result-title{ position:absolute; top: calc(env(safe-area-inset-top,16px) + 20px); color:#fff; font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; opacity:.4; }
 
-  /* Slot catbox: ganti gambar di sini nanti.
-     - Taruh file gambar catbox kamu (misalnya "catbox.png") di folder yang sama dengan HTML ini.
-     - Ganti src pada <img id="catboxFrame"> di bawah jadi "catbox.png".
-     - Foto hasil scan otomatis muncul di lapisan #resultPhoto, di belakang/di dalam bingkai catbox. */
-  .catbox-stage{
+  .stage{
     position:relative;
-    width:100%; max-width:320px; aspect-ratio:1/1;
+    width:100%; max-width:300px; aspect-ratio:1/1;
     margin-bottom:22px;
   }
-  #resultPhoto{
-    position:absolute; inset:8%;
-    width:84%; height:84%; object-fit:cover;
-    border-radius:6px;
+  .stage img{
+    position:absolute; inset:0;
+    width:100%; height:100%; object-fit:cover;
+    border-radius:16px;
+    opacity:0;
+    transition: opacity .5s ease;
   }
-  #catboxFrame{
-    position:absolute; inset:0; width:100%; height:100%;
-    object-fit:contain; pointer-events:none;
-  }
-  /* placeholder bingkai kalau belum ada gambar catbox */
+  .stage img.show{ opacity:1; }
+
+  /* placeholder kalau gambar catbox belum ditaruh / belum ketemu filenya */
   .catbox-placeholder{
     position:absolute; inset:0;
     border:10px solid #7a4a1f;
-    border-radius:10px;
+    border-radius:14px;
     box-shadow: inset 0 0 0 3px #5c3714;
-    pointer-events:none;
+    background:#1a1a1a;
+    display:none;
+    align-items:center; justify-content:center;
+    text-align:center; color:#888; font-size:12px; padding:16px;
   }
-  .catbox-placeholder::after{
-    content:"📦 ganti dengan gambar catbox-mu";
-    position:absolute; bottom:-26px; left:0; right:0;
-    text-align:center; font-size:10px; color:#666;
-  }
+  .catbox-placeholder.show{ display:flex; }
 
   .kodam-name{ color:#fff; font-size:19px; font-weight:700; text-align:center; margin-bottom:8px; }
-  .kodam-desc{ color:#999; font-size:14px; line-height:1.6; text-align:center; margin-bottom:26px; max-width:320px; }
+  .kodam-desc{ color:#999; font-size:14px; line-height:1.6; text-align:center; margin-bottom:26px; max-width:300px; }
 
-  .again{ width:100%; max-width:320px; padding:14px; border:none; border-radius:12px; background:#fff; color:#111; font-size:15px; font-weight:600; }
+  .again{ width:100%; max-width:300px; padding:14px; border:none; border-radius:12px; background:#fff; color:#111; font-size:15px; font-weight:600; }
 </style>
 </head>
 <body>
@@ -130,10 +122,9 @@
 <div class="screen" id="screenResult">
   <div class="result-title">Hasil Pemindaian</div>
 
-  <div class="catbox-stage">
-    <img id="resultPhoto" src="" alt="hasil scan">
-    <!-- ganti src di bawah ini dengan gambar catbox kamu, mis: "catbox.png" -->
-    <img id="catboxFrame" src="" alt="" style="display:none;">
+  <div class="stage">
+    <img id="selfiePhoto" src="" alt="foto kamu">
+    <img id="catboxPhoto" src="" alt="wujud kodam">
     <div class="catbox-placeholder" id="catboxPlaceholder"></div>
   </div>
 
@@ -143,12 +134,74 @@
 </div>
 
 <script>
+/* =========================================================
+   DAFTAR KODAM
+   - "img" adalah path file catbox yang HARUS kamu siapkan sendiri.
+   - Simpan semua gambar catbox di folder "catbox/" (sejajar dengan file HTML ini),
+     dengan nama file PERSIS seperti di kolom "img" di bawah.
+   - Kalau file gambarnya belum ada, otomatis muncul kotak placeholder
+     coklat bertuliskan nama file yang harus kamu isi.
+   - Tambah/ganti/hapus entri di array ini sesuka kamu.
+========================================================= */
+const KODAM_LIST = [
+  { nama: "Kodam Harimau Api Kahyangan", img: "https://files.catbox.moe/rtzp1v.jpg",
+    desc: "Auranya panas kayak abis makan mie level 20. Sering muncul pas kamu sok berani padahal deg-degan." },
+    
+  { nama: "Kodam Naga Petir Selatan", img: "https://files.catbox.moe/f7ncs8.jpg",
+    desc: "Konon bikin sinyal wifi kamu suka ilang sendiri pas lagi seru-serunya nonton." },
+    
+  { nama: "Kodam Garuda Penunggu Warnet", img: "https://files.catbox.moe/gut7bt.jpg",
+    desc: "Titisan pejuang jaman dulu, sekarang kerjaannya nemenin kamu begadang main game." },
+    
+  { nama: "Kodam Kucing Oren Julid Sejagat", img: "https://files.catbox.moe/tk1nyy.jpg",
+    desc: "Kalau kamu suka komen julid tapi baik hati, ini biang keroknya." },
+    
+  { nama: "Kodam Buaya Rawa Baper", img: "https://files.catbox.moe/faqjyu.jpg",
+    desc: "Bikin kamu suka overthinking chat yang di-read doang tapi gak dibales." },
+    
+  { nama: "Kodam Kera Sakti Deadline", img: "catbox/kera.png",
+    desc: "Selalu nongol H-1 jam sebelum deadline, ngasih kamu ide dadakan yang ternyata lumayan." },
+    
+  { nama: "Kodam Elang Hitam Portal Wifi", img: "catbox/elang.png",
+    desc: "Penjaga sinyal, tapi kerjaannya lebih sering matiin data seluler kamu diam-diam." },
+    
+  { nama: "Kodam Komodo Motor Matic", img: "catbox/komodo.png",
+    desc: "Bikin kamu jago nyelip di kemacetan padahal jalan cuma muat satu motor." },
+    
+  { nama: "Kodam Lele Jumbo Kerak Nasi", img: "catbox/lele.png",
+    desc: "Bawaannya laper mulu walau abis makan gede. Nemplok pas jam ngemil malam." },
+    
+  { nama: "Kodam Merak Story WhatsApp", img: "catbox/merak.png",
+    desc: "Bikin kamu semangat bikin story tiap hari padahal yang liat itu-itu aja." },
+    
+  { nama: "Kodam Ular Weling Checkout Tengah Malam", img: "catbox/ular.png",
+    desc: "Sisiknya kilau diskon. Aktif jam 12 malam pas ada flash sale." },
+    
+  { nama: "Kodam Singa Padang Rumput Julid", img: "catbox/singa.png",
+    desc: "Suka bikin kamu menang debat receh di grup keluarga sampai War." },
+    
+  { nama: "Kodam Burung Hantu Insomnia", img: "catbox/burung-hantu.png",
+    desc: "Kerjaannya nemenin kamu scroll HP jam 3 pagi padahal besok kerja." },
+    
+  { nama: "Kodam Kalajengking Baterai Boros", img: "catbox/kalajengking.png",
+    desc: "Sengatannya bikin HP kamu drop 20% cuma buat buka satu aplikasi." },
+  
+  { nama: "Kodam Kambing Jantan Rebahan", img: "catbox/kambing.png",
+    desc: "Sekali nempel bikin kamu betah rebahan seharian, niatnya rebahan 5 menit doang." },
+    
+  { nama: "Kodam Kupu-Kupu Mager Olahraga", img: "catbox/kupu-kupu.png",
+    desc: "Cantik tapi bikin niat olahraga kamu batal terus dari Senin." }
+];
+
 const video = document.getElementById('video');
 const scanBtn = document.getElementById('scanBtn');
 const screenCamera = document.getElementById('screenCamera');
 const screenResult = document.getElementById('screenResult');
 const scanStatus = document.getElementById('scanStatus');
 const err = document.getElementById('err');
+const selfiePhoto = document.getElementById('selfiePhoto');
+const catboxPhoto = document.getElementById('catboxPhoto');
+const catboxPlaceholder = document.getElementById('catboxPlaceholder');
 
 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
   err.textContent = "Browser ini gak support akses kamera lewat file lokal. Coba jalankan file-nya lewat server (http/https), bukan dibuka langsung.";
@@ -167,17 +220,6 @@ if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     });
 }
 
-const jenis = ["Naga","Harimau","Garuda","Buaya Putih","Kera Sakti","Elang Hitam","Kucing Oren","Komodo","Singa","Lele Jumbo"];
-const sifat = ["Api Kahyangan","Petir Selatan","Embun Subuh","Angin Puting Beliung","Cahaya Senja","Bara Merapi","Kabut Merapat","Taring Perak"];
-const gelar = ["dari Gunung Kawi","Penunggu Warnet 24 Jam","Titisan Malam Jumat","Penjaga Portal Wifi","Sang Penakluk Deadline","Panglima Julid Sejagat"];
-const deskripsi = [
-  "Auranya keliatan dari kejauhan. Konon kalau lagi laper, seisi kulkas bisa tiba-tiba kosong sendiri.",
-  "Sering muncul pas lagi presentasi penting, bikin suara tiba-tiba serak nggak jelas.",
-  "Kalau kamu sering ketiban rejeki nomplok, ya karena ini biang keroknya.",
-  "Suka aktif jam 2 pagi, bikin kamu tiba-tiba pengen makan indomie.",
-  "Punya kebiasaan bikin kamu telat 5 menit di momen paling penting.",
-  "Sering nyuruh kamu checkout keranjang belanja online jam 12 malam."
-];
 function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
 
 const scanMsgs = ["MENGANALISIS AURA...","MELACAK FREKUENSI GAIB...","MENCOCOKKAN LELUHUR...","HAMPIR SELESAI..."];
@@ -204,13 +246,41 @@ function scan(){
     ctx.translate(canvas.width, 0);
     ctx.scale(-1, 1);
     ctx.drawImage(video, 0, 0);
-    document.getElementById('resultPhoto').src = canvas.toDataURL('image/jpeg');
 
-    document.getElementById('kodamName').textContent = `Kodam ${pick(jenis)} ${pick(sifat)} ${pick(gelar)}`;
-    document.getElementById('kodamDesc').textContent = pick(deskripsi);
+    // reset state gambar
+    selfiePhoto.classList.remove('show');
+    catboxPhoto.classList.remove('show');
+    catboxPlaceholder.classList.remove('show');
+    selfiePhoto.src = canvas.toDataURL('image/jpeg');
+
+    const kodam = pick(KODAM_LIST);
+    document.getElementById('kodamName').textContent = kodam.nama;
+    document.getElementById('kodamDesc').textContent = kodam.desc;
 
     screenResult.classList.add('show');
-    scanBtn.disabled = false;
+
+    // munculin foto selfie dulu
+    requestAnimationFrame(()=> selfiePhoto.classList.add('show'));
+
+    // setelah ~1.1 detik, foto selfie hilang, ganti gambar catbox si kodam
+    setTimeout(()=>{
+      selfiePhoto.classList.remove('show');
+
+      // coba load gambar catbox; kalau gagal (belum ada filenya), tampilin placeholder
+      const testImg = new Image();
+      testImg.onload = () => {
+        catboxPhoto.src = kodam.img;
+        catboxPhoto.classList.add('show');
+      };
+      testImg.onerror = () => {
+        catboxPlaceholder.textContent = "📦 taruh gambar di: " + kodam.img;
+        catboxPlaceholder.classList.add('show');
+      };
+      testImg.src = kodam.img;
+
+      scanBtn.disabled = false;
+    }, 1100);
+
   }, 1800);
 }
 
