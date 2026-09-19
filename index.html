@@ -2,281 +2,205 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Kodam Scanner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Suzuru Dompet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
-  *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
-  html, body{ height:100%; background:#000; overflow:hidden; }
-  body{ font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#13a66a;--g2:#087d4e;--bg:#f5f7f6;--dark:#18221e;--muted:#7b8580;--line:#e7ece9}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#e8eeeb;color:var(--dark)}
+button,input{font:inherit}button{border:0;cursor:pointer}.app{width:100%;max-width:480px;min-height:100vh;margin:auto;background:var(--bg);position:relative;overflow:hidden}.hidden{display:none!important}
 
-  .screen{ position:fixed; inset:0; transition: transform .4s cubic-bezier(.25,.9,.35,1); }
+/* AUTH */
+.auth{min-height:100vh;background:linear-gradient(155deg,#087c4e,#18b975);padding:0 22px;color:white;position:relative;overflow:hidden}
+.auth:before,.auth:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
+.auth:before{width:280px;height:280px;right:-120px;top:-90px}.auth:after{width:210px;height:210px;left:-110px;bottom:-50px}
+.auth-logo{padding-top:70px;text-align:center;position:relative;z-index:1}
+.logo-mark{width:72px;height:72px;border-radius:23px;background:rgba(255,255,255,.16);display:grid;place-items:center;margin:auto;font-size:31px;box-shadow:0 15px 35px rgba(0,0,0,.12)}
+.auth-logo h1{font-size:28px;margin-top:15px;font-weight:850}.auth-logo p{font-size:13px;opacity:.78;margin-top:5px}
+.auth-card{position:relative;z-index:1;background:#fff;color:var(--dark);border-radius:26px;padding:23px;margin-top:34px;box-shadow:0 20px 50px rgba(0,0,0,.16)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:#f0f4f2;border-radius:12px;padding:4px;margin-bottom:22px}
+.tab{padding:11px;border-radius:9px;background:transparent;color:#78827e;font-weight:750;font-size:13px}.tab.active{background:#fff;color:var(--g);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.auth-form h2{font-size:21px}.auth-form .sub{font-size:12px;color:var(--muted);margin:6px 0 20px}
+.field{margin-bottom:14px}.field label{display:block;font-size:12px;font-weight:750;margin-bottom:7px}.input-wrap{position:relative}.input-wrap i{position:absolute;left:14px;top:14px;color:#9ba49f;font-size:14px}.input-wrap input{width:100%;height:45px;border:1px solid var(--line);background:#f8faf9;border-radius:12px;padding:0 42px;color:var(--dark);outline:none}.input-wrap input:focus{border-color:#8bd3b3;background:#fff}.toggle-pin{position:absolute!important;left:auto!important;right:14px;top:14px!important;cursor:pointer}.submit{width:100%;height:47px;border-radius:13px;background:var(--g);color:#fff;font-weight:800;margin-top:5px;box-shadow:0 7px 16px rgba(19,166,106,.22)}.auth-note{text-align:center;color:#9aa39f;font-size:10px;margin-top:15px}
 
-  /* ---------- SCREEN 1: KAMERA ---------- */
-  #screenCamera{ background:#000; z-index:1; }
-  .viewport{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:#000; }
-  video{ width:100%; height:100%; object-fit:cover; display:block; transform: scaleX(-1); }
+/* HOME */
+.home{min-height:100vh;padding-bottom:80px}.header{padding:22px 19px 18px;background:linear-gradient(145deg,#0a8956,#19b977);color:#fff;border-radius:0 0 27px 27px;position:relative;overflow:hidden}.orb{position:absolute;border-radius:50%;background:rgba(255,255,255,.09);pointer-events:none}.orb1{width:180px;height:180px;right:-80px;top:-90px;animation:float 5s ease-in-out infinite}.orb2{width:90px;height:90px;left:-35px;bottom:0;animation:float 6s ease-in-out infinite reverse}.headrow{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:850;font-size:18px}.brand i{margin-right:7px}.head-actions{display:flex;gap:8px}.round{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center}.hello{position:relative;z-index:2;margin-top:22px;font-size:13px;opacity:.8}.username{position:relative;z-index:2;font-size:21px;font-weight:800;margin-top:3px}.balance{position:relative;z-index:2;margin-top:17px;padding:16px 17px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.15);border-radius:18px}.balance small{font-size:12px;opacity:.75}.amount{font-size:28px;font-weight:850;margin-top:3px}.quick{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.quick button{background:#fff;color:var(--g2);border-radius:13px;padding:12px 4px;font-size:11px;font-weight:800}.quick i{display:block;font-size:17px;margin-bottom:6px}.content{padding:20px}.section{font-size:16px;font-weight:850;margin-bottom:13px}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.service{background:#fff;border-radius:16px;padding:14px 3px;box-shadow:0 4px 14px rgba(20,40,30,.045)}.svc-icon{width:42px;height:42px;margin:auto;background:#e7f8f0;color:var(--g);border-radius:13px;display:grid;place-items:center}.service span{display:block;font-size:10px;font-weight:750;margin-top:8px}.card{background:#fff;border-radius:18px;margin-top:21px;padding:17px;box-shadow:0 4px 14px rgba(20,40,30,.045)}.cardhead{display:flex;justify-content:space-between;align-items:center}.cardhead b{font-size:15px}.cardhead button{background:none;color:var(--g);font-size:11px;font-weight:750}.empty{text-align:center;padding:22px 5px;color:#9aa39f}.empty i{font-size:27px;margin-bottom:9px}.empty p{font-size:12px}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);height:70px;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);z-index:10}.nav button{background:none;color:#89928e;font-size:10px;font-weight:700}.nav i{display:block;font-size:18px;margin-bottom:5px}.nav .active{color:var(--g)}
 
-  .scan-line{
-    position:fixed; left:0; right:0; height:3px;
-    background:#fff; box-shadow:0 0 20px 4px rgba(255,255,255,0.8);
-    top:0; display:none; z-index:2;
-  }
-  .scanning .scan-line{ display:block; animation: sweep 1s linear infinite; }
-  @keyframes sweep{ 0%{ top:0% } 100%{ top:100% } }
-  .scan-tint{
-    position:fixed; inset:0; background:rgba(255,255,255,0); z-index:1; pointer-events:none;
-    transition: background .2s ease;
-  }
-  .scanning .scan-tint{ background: rgba(120,255,180,0.08); }
+/* FEATURE */
+.screen{position:fixed;inset:0;z-index:20;background:var(--bg);max-width:480px;margin:auto;overflow:auto;animation:slide .25s ease}.screen-top{height:73px;background:linear-gradient(145deg,#0a8956,#19b977);color:#fff;display:flex;align-items:center;padding:0 17px;gap:13px}.back{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff}.screen-top h2{font-size:18px}.screen-body{padding:20px}.feature-card{background:#fff;border-radius:19px;padding:20px;margin-bottom:13px}.feature-icon{width:55px;height:55px;border-radius:17px;background:#e7f8f0;color:var(--g);display:grid;place-items:center;font-size:23px;margin-bottom:13px}.feature-card h3{font-size:18px}.feature-card p{font-size:12px;color:var(--muted);line-height:1.55;margin-top:6px}.primary{width:100%;height:46px;border-radius:13px;background:var(--g);color:#fff;font-weight:800;margin-top:17px}.logout{background:#fff;color:#d9534f;border:1px solid #f0d9d7}
 
-  .top-bar{
-    position:fixed; top:0; left:0; right:0; z-index:3;
-    padding: calc(env(safe-area-inset-top, 16px) + 6px) 20px 14px;
-    display:flex; justify-content:center;
-    background: linear-gradient(180deg, rgba(0,0,0,0.55), transparent);
-  }
-  .top-bar span{ color:#fff; font-size:13px; font-weight:600; letter-spacing:.02em; opacity:.9; }
-
-  .scan-status{
-    position:fixed; top:50%; left:0; right:0; transform:translateY(-50%);
-    text-align:center; color:#fff; font-size:13px; font-weight:600;
-    letter-spacing:.15em; text-transform:uppercase; opacity:0; z-index:3;
-    transition: opacity .2s ease;
-  }
-  .scanning .scan-status{ opacity:.85; }
-
-  .controls{
-    position:fixed; left:0; right:0; bottom:0; z-index:3;
-    padding: 22px 24px calc(env(safe-area-inset-bottom, 18px) + 22px);
-    display:flex; align-items:center; justify-content:center;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent);
-  }
-  .shutter{ width:74px; height:74px; border-radius:50%; background:transparent; border:4px solid #fff; padding:4px; cursor:pointer; }
-  .shutter-inner{ width:100%; height:100%; border-radius:50%; background:#fff; transition: transform .15s ease; }
-  .shutter:active .shutter-inner{ transform: scale(.82); }
-  .shutter:disabled{ opacity:.4; }
-
-  .error{ position:fixed; top:50%; left:20px; right:20px; transform:translateY(-50%); color:#fff; text-align:center; font-size:14px; opacity:.8; z-index:3; }
-
-  /* ---------- SCREEN 2: HASIL ---------- */
-  #screenResult{
-    background:#0e0e0e;
-    transform: translateY(100%);
-    z-index:2;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding: calc(env(safe-area-inset-top,16px) + 20px) 24px calc(env(safe-area-inset-bottom,16px) + 24px);
-  }
-  #screenResult.show{ transform: translateY(0); }
-
-  .result-title{ position:absolute; top: calc(env(safe-area-inset-top,16px) + 20px); color:#fff; font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; opacity:.4; }
-
-  .stage{
-    position:relative;
-    width:100%; max-width:300px; aspect-ratio:1/1;
-    margin-bottom:22px;
-  }
-  .stage img{
-    position:absolute; inset:0;
-    width:100%; height:100%; object-fit:cover;
-    border-radius:16px;
-    opacity:0;
-    transition: opacity .5s ease;
-  }
-  .stage img.show{ opacity:1; }
-
-  /* placeholder kalau gambar catbox belum ditaruh / belum ketemu filenya */
-  .catbox-placeholder{
-    position:absolute; inset:0;
-    border:10px solid #7a4a1f;
-    border-radius:14px;
-    box-shadow: inset 0 0 0 3px #5c3714;
-    background:#1a1a1a;
-    display:none;
-    align-items:center; justify-content:center;
-    text-align:center; color:#888; font-size:12px; padding:16px;
-  }
-  .catbox-placeholder.show{ display:flex; }
-
-  .kodam-name{ color:#fff; font-size:19px; font-weight:700; text-align:center; margin-bottom:8px; }
-  .kodam-desc{ color:#999; font-size:14px; line-height:1.6; text-align:center; margin-bottom:26px; max-width:300px; }
-
-  .again{ width:100%; max-width:300px; padding:14px; border:none; border-radius:12px; background:#fff; color:#111; font-size:15px; font-weight:600; }
+/* animation */
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-9px,10px)}}@keyframes slide{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.toast{position:fixed;z-index:50;left:50%;bottom:88px;transform:translate(-50%,15px);opacity:0;background:#17221e;color:#fff;padding:11px 15px;border-radius:12px;font-size:12px;transition:.22s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
+<div class="app">
 
-<!-- SCREEN 1: KAMERA -->
-<div class="screen" id="screenCamera">
-  <div class="viewport"><video id="video" autoplay playsinline muted></video></div>
-  <div class="scan-tint"></div>
-  <div class="scan-line"></div>
-  <div class="top-bar"><span>Kodam Scanner</span></div>
-  <div class="scan-status" id="scanStatus">MENGANALISIS AURA...</div>
-  <div id="err" class="error"></div>
-  <div class="controls">
-    <button class="shutter" id="scanBtn" onclick="scan()"><div class="shutter-inner"></div></button>
+<!-- LOGIN / REGISTER -->
+<section id="auth" class="auth">
+  <div class="auth-logo">
+    <div class="logo-mark"><i class="fa-solid fa-wallet"></i></div>
+    <h1>Suzuru Dompet</h1>
+    <p>Dompet digital sederhana untuk kamu</p>
   </div>
-</div>
+  <div class="auth-card">
+    <div class="tabs">
+      <button id="tabLogin" class="tab active" onclick="switchAuth('login')">Login</button>
+      <button id="tabRegister" class="tab" onclick="switchAuth('register')">Daftar</button>
+    </div>
 
-<!-- SCREEN 2: HASIL -->
-<div class="screen" id="screenResult">
-  <div class="result-title">Hasil Pemindaian</div>
+    <form id="loginForm" class="auth-form" onsubmit="login(event)">
+      <h2>Selamat datang</h2>
+      <p class="sub">Masuk untuk membuka dompet kamu.</p>
+      <div class="field"><label>Email</label><div class="input-wrap"><i class="fa-regular fa-envelope"></i><input id="loginEmail" type="email" placeholder="nama@email.com" required></div></div>
+      <div class="field"><label>PIN</label><div class="input-wrap"><i class="fa-solid fa-lock"></i><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="Masukkan PIN" required><i class="fa-regular fa-eye toggle-pin" onclick="togglePin('loginPin',this)"></i></div></div>
+      <button class="submit" type="submit">Masuk</button>
+    </form>
 
-  <div class="stage">
-    <img id="selfiePhoto" src="" alt="foto kamu">
-    <img id="catboxPhoto" src="" alt="wujud kodam">
-    <div class="catbox-placeholder" id="catboxPlaceholder"></div>
+    <form id="registerForm" class="auth-form hidden" onsubmit="register(event)">
+      <h2>Buat akun</h2>
+      <p class="sub">Daftar sekali, data akun disimpan di perangkat ini.</p>
+      <div class="field"><label>Nama</label><div class="input-wrap"><i class="fa-regular fa-user"></i><input id="regName" type="text" placeholder="Nama kamu" maxlength="30" required></div></div>
+      <div class="field"><label>Email</label><div class="input-wrap"><i class="fa-regular fa-envelope"></i><input id="regEmail" type="email" placeholder="nama@email.com" required></div></div>
+      <div class="field"><label>PIN</label><div class="input-wrap"><i class="fa-solid fa-lock"></i><input id="regPin" type="password" inputmode="numeric" maxlength="6" minlength="4" placeholder="4–6 digit PIN" required><i class="fa-regular fa-eye toggle-pin" onclick="togglePin('regPin',this)"></i></div></div>
+      <button class="submit" type="submit">Buat Akun</button>
+    </form>
+    <div class="auth-note"><i class="fa-solid fa-shield-halved"></i> Akun dummy tersimpan secara lokal di perangkat.</div>
   </div>
+</section>
 
-  <div class="kodam-name" id="kodamName"></div>
-  <p class="kodam-desc" id="kodamDesc"></p>
-  <button class="again" onclick="retry()">Scan Lagi</button>
+<!-- HOME -->
+<section id="home" class="home hidden">
+<header class="header">
+  <div class="orb orb1"></div><div class="orb orb2"></div>
+  <div class="headrow">
+    <div class="brand"><i class="fa-solid fa-wallet"></i>Suzuru Dompet</div>
+    <div class="head-actions"><button class="round" onclick="openFeature('Notifikasi')"><i class="fa-regular fa-bell"></i></button><button class="round" onclick="openFeature('Profil')"><i class="fa-regular fa-user"></i></button></div>
+  </div>
+  <div class="hello">Halo,</div><div id="homeName" class="username">Username</div>
+  <div class="balance"><small>Saldo tersedia</small><div class="amount">Rp0</div></div>
+  <div class="quick">
+    <button onclick="openFeature('Top Up')"><i class="fa-solid fa-plus"></i>Top Up</button>
+    <button onclick="openFeature('Kirim')"><i class="fa-solid fa-paper-plane"></i>Kirim</button>
+    <button onclick="openFeature('QRIS')"><i class="fa-solid fa-qrcode"></i>QRIS</button>
+  </div>
+</header>
+<main class="content">
+  <div class="section">Layanan</div>
+  <div class="services">
+    <button class="service" onclick="openFeature('Top Up')"><div class="svc-icon"><i class="fa-solid fa-wallet"></i></div><span>Top Up</span></button>
+    <button class="service" onclick="openFeature('Kirim')"><div class="svc-icon"><i class="fa-solid fa-paper-plane"></i></div><span>Kirim</span></button>
+    <button class="service" onclick="openFeature('QRIS')"><div class="svc-icon"><i class="fa-solid fa-qrcode"></i></div><span>QRIS</span></button>
+    <button class="service" onclick="openFeature('Tagihan')"><div class="svc-icon"><i class="fa-solid fa-receipt"></i></div><span>Tagihan</span></button>
+  </div>
+  <div class="card"><div class="cardhead"><b>Transaksi Terbaru</b><button onclick="openFeature('Aktivitas')">Lihat semua</button></div><div class="empty"><i class="fa-regular fa-folder-open"></i><p>Belum ada transaksi</p></div></div>
+</main>
+<nav class="nav">
+  <button class="active" onclick="closeFeature()"><i class="fa-solid fa-house"></i>Beranda</button>
+  <button onclick="openFeature('Dompet')"><i class="fa-solid fa-wallet"></i>Dompet</button>
+  <button onclick="openFeature('Aktivitas')"><i class="fa-solid fa-clock-rotate-left"></i>Aktivitas</button>
+  <button onclick="openFeature('Profil')"><i class="fa-regular fa-user"></i>Profil</button>
+</nav>
+</section>
+
+<!-- FEATURE SCREEN -->
+<section id="screen" class="screen hidden">
+  <header class="screen-top"><button class="back" onclick="closeFeature()"><i class="fa-solid fa-arrow-left"></i></button><h2 id="screenTitle">Fitur</h2></header>
+  <main id="screenBody" class="screen-body"></main>
+</section>
+<div id="toast" class="toast"></div>
 </div>
 
 <script>
-/* =========================================================
-   DAFTAR KODAM
-   - "img" adalah path file catbox yang HARUS kamu siapkan sendiri.
-   - Simpan semua gambar catbox di folder "catbox/" (sejajar dengan file HTML ini),
-     dengan nama file PERSIS seperti di kolom "img" di bawah.
-   - Kalau file gambarnya belum ada, otomatis muncul kotak placeholder
-     coklat bertuliskan nama file yang harus kamu isi.
-   - Tambah/ganti/hapus entri di array ini sesuka kamu.
-========================================================= */
-const KODAM_LIST = [
-  { nama: "Kodam Harimau Kolor Seminggu Gak Dicuci", img: "catbox/harimau.png",
-    desc: "Auranya nyengat dari radius 5 meter. Kalau kamu males ganti baju tapi ngerasa paling wangi sedunia, ini biangnya." },
-  { nama: "Kodam Naga Kentut Diam-Diam Ngebul", img: "catbox/naga.png",
-    desc: "Keluar tanpa suara tapi efeknya bikin satu lift kosong dalam sedetik. Kamu pura-pura liat HP padahal pelakunya." },
-  { nama: "Kodam Garuda Iler Bantal Basah", img: "catbox/garuda.png",
-    desc: "Titisan leluhur yang bikin kamu bangun tidur siang dengan bantal kayak abis kebanjiran." },
-  { nama: "Kodam Kucing Oren Kerokan Sebelah", img: "catbox/kucing-oren.png",
-    desc: "Bikin kamu garuk-garuk badan di tempat umum dengan pede maksimal, gak peduli orang liatin." },
-  { nama: "Kodam Buaya Kaos Kaki Bau Terasi", img: "catbox/buaya.png",
-    desc: "Sekali lepas sepatu, seisi ruangan langsung sepakat buka jendela tanpa dikomando." },
-  { nama: "Kodam Kera Sakti Jerawat Pantat", img: "catbox/kera.png",
-    desc: "Nongol pas lagi enak-enaknya duduk lama, bikin kamu geser posisi duduk 40 kali sejam." },
-  { nama: "Kodam Elang Hitam Kentut Bau Nyaru Gorengan", img: "catbox/elang.png",
-    desc: "Saking otentiknya orang di sebelah malah nanya 'itu bau gorengan dari mana ya'." },
-  { nama: "Kodam Komodo Nafas Bangun Tidur", img: "catbox/komodo.png",
-    desc: "Sekali buka mulut pagi hari, bisa bikin nyamuk semalaman kabur duluan." },
-  { nama: "Kodam Lele Jumbo Sisa Nasi di Gigi", img: "catbox/lele.png",
-    desc: "Bikin kamu senyum pede di foto grup padahal ada nasi nyempil dari makan siang tadi." },
-  { nama: "Kodam Merak Ketek Bau Bawang Goreng", img: "catbox/merak.png",
-    desc: "Auranya nempel di baju sampai tiga kali cuci, konon warisan turun-temurun." },
-  { nama: "Kodam Ular Weling Upil Kering Nempel", img: "catbox/ular.png",
-    desc: "Muncul pas video call penting, tapi kameranya sengaja nyorot dari bawah dagu." },
-  { nama: "Kodam Singa Handuk Basah Seminggu", img: "catbox/singa.png",
-    desc: "Bikin kamu lupa jemur handuk sampai baunya bisa dipakai buat pengusir tikus." },
-  { nama: "Kodam Burung Hantu Ngiler Sambil Melek", img: "catbox/burung-hantu.png",
-    desc: "Aktif pas rapat online, bikin kamu ketiduran duduk tegak dengan mulut nganga." },
-  { nama: "Kodam Kalajengking Sendal Jepit Sebelah Ilang", img: "catbox/kalajengking.png",
-    desc: "Sengatannya bikin satu sendal raib misterius, sebelahnya dipakai keliling rumah sampai lecek." },
-  { nama: "Kodam Kambing Jantan Baju Dalam Kebalik", img: "catbox/kambing.png",
-    desc: "Bikin kamu jalan seharian pede padahal baju dipakai belakang-depan sejak subuh." },
-  { nama: "Kodam Kupu-Kupu Bantal Guling Bau Iler", img: "catbox/kupu-kupu.png",
-    desc: "Sekali nempel, guling kesayanganmu resmi jadi barang bukti tidur sembilan jam nonstop." },
-  { nama: "Kodam Tuyul Kolor Nyangkut di Kipas", img: "catbox/tuyul.png",
-    desc: "Bikin jemuran kamu ilang sebelah tanpa jejak, ujung-ujungnya ketemu nyangkut di baling-baling kipas angin." },
-  { nama: "Kodam Babi Ngepet Perut Buncit Abis Lebaran", img: "catbox/babi-ngepet.png",
-    desc: "Sekali kerasukan, celana langsung sesak sendiri walau baru makan ketupat sepiring." }
-];
+const KEY="suzuru_dummy_user_v1";
+const SESSION="suzuru_dummy_session_v1";
+let toastTimer;
 
-const video = document.getElementById('video');
-const scanBtn = document.getElementById('scanBtn');
-const screenCamera = document.getElementById('screenCamera');
-const screenResult = document.getElementById('screenResult');
-const scanStatus = document.getElementById('scanStatus');
-const err = document.getElementById('err');
-const selfiePhoto = document.getElementById('selfiePhoto');
-const catboxPhoto = document.getElementById('catboxPhoto');
-const catboxPlaceholder = document.getElementById('catboxPlaceholder');
-
-if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-  err.textContent = "Browser ini gak support akses kamera lewat file lokal. Coba jalankan file-nya lewat server (http/https), bukan dibuka langsung.";
-  scanBtn.disabled = true;
-} else {
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
-    .then(stream => { video.srcObject = stream; })
-    .catch((e) => {
-      let msg = "Gak bisa akses kamera (" + e.name + ").";
-      if (e.name === "NotAllowedError") msg = "Izin kamera ditolak. Buka pengaturan situs di browser lalu izinkan Camera.";
-      else if (e.name === "NotFoundError") msg = "Kamera gak ketemu di perangkat ini.";
-      else if (e.name === "NotReadableError") msg = "Kamera lagi dipakai aplikasi lain. Tutup app lain yang pakai kamera.";
-      else if (e.name === "SecurityError") msg = "Halaman ini harus dibuka lewat https:// atau localhost, bukan file lokal, biar kamera bisa aktif.";
-      err.textContent = msg;
-      scanBtn.disabled = true;
-    });
+function getUser(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+function saveUser(user){localStorage.setItem(KEY,JSON.stringify(user))}
+function switchAuth(mode){
+  const login=mode==="login";
+  document.getElementById("loginForm").classList.toggle("hidden",!login);
+  document.getElementById("registerForm").classList.toggle("hidden",login);
+  document.getElementById("tabLogin").classList.toggle("active",login);
+  document.getElementById("tabRegister").classList.toggle("active",!login);
 }
-
-function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
-
-const scanMsgs = ["MENGANALISIS AURA...","MELACAK FREKUENSI GAIB...","MENCOCOKKAN LELUHUR...","HAMPIR SELESAI..."];
-
-function scan(){
-  scanBtn.disabled = true;
-  screenCamera.classList.add('scanning');
-
-  let mi = 0;
-  const msgInterval = setInterval(()=>{
-    mi = (mi+1) % scanMsgs.length;
-    scanStatus.textContent = scanMsgs[mi];
-  }, 450);
-
-  setTimeout(()=>{
-    clearInterval(msgInterval);
-    screenCamera.classList.remove('scanning');
-
-    // ambil foto dari video
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.translate(canvas.width, 0);
-    ctx.scale(-1, 1);
-    ctx.drawImage(video, 0, 0);
-
-    // reset state gambar
-    selfiePhoto.classList.remove('show');
-    catboxPhoto.classList.remove('show');
-    catboxPlaceholder.classList.remove('show');
-    selfiePhoto.src = canvas.toDataURL('image/jpeg');
-
-    const kodam = pick(KODAM_LIST);
-    document.getElementById('kodamName').textContent = kodam.nama;
-    document.getElementById('kodamDesc').textContent = kodam.desc;
-
-    screenResult.classList.add('show');
-
-    // munculin foto selfie dulu
-    requestAnimationFrame(()=> selfiePhoto.classList.add('show'));
-
-    // setelah ~1.1 detik, foto selfie hilang, ganti gambar catbox si kodam
-    setTimeout(()=>{
-      selfiePhoto.classList.remove('show');
-
-      // coba load gambar catbox; kalau gagal (belum ada filenya), tampilin placeholder
-      const testImg = new Image();
-      testImg.onload = () => {
-        catboxPhoto.src = kodam.img;
-        catboxPhoto.classList.add('show');
-      };
-      testImg.onerror = () => {
-        catboxPlaceholder.textContent = "📦 taruh gambar di: " + kodam.img;
-        catboxPlaceholder.classList.add('show');
-      };
-      testImg.src = kodam.img;
-
-      scanBtn.disabled = false;
-    }, 1100);
-
-  }, 1800);
+function register(e){
+  e.preventDefault();
+  const name=document.getElementById("regName").value.trim();
+  const email=document.getElementById("regEmail").value.trim().toLowerCase();
+  const pin=document.getElementById("regPin").value.trim();
+  if(!/^\d{4,6}$/.test(pin)){showToast("PIN harus 4–6 angka");return}
+  const user=getUser();
+  if(user){showToast("Sudah ada akun di perangkat ini");return}
+  saveUser({name,email,pin,balance:0,transactions:[]});
+  localStorage.setItem(SESSION,"1");
+  showHome();
 }
-
-function retry(){
-  screenResult.classList.remove('show');
+function login(e){
+  e.preventDefault();
+  const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+  const pin=document.getElementById("loginPin").value.trim();
+  const user=getUser();
+  if(!user){showToast("Belum ada akun. Silakan daftar.");return}
+  if(email!==user.email || pin!==user.pin){showToast("Email atau PIN salah");return}
+  localStorage.setItem(SESSION,"1");
+  showHome();
 }
+function showHome(){
+  const user=getUser();
+  if(!user){showAuth();return}
+  document.getElementById("auth").classList.add("hidden");
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("homeName").textContent=user.name;
+}
+function showAuth(){
+  document.getElementById("auth").classList.remove("hidden");
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("screen").classList.add("hidden");
+}
+function togglePin(id,icon){
+  const input=document.getElementById(id);
+  input.type=input.type==="password"?"text":"password";
+  icon.classList.toggle("fa-eye");
+  icon.classList.toggle("fa-eye-slash");
+}
+const features={
+"Top Up":["fa-circle-plus","Top Up","Halaman top up saldo Suzuru Dompet.","Pilih metode top up"],
+"Kirim":["fa-paper-plane","Kirim","Kirim saldo ke pengguna lain.","Lanjutkan"],
+"QRIS":["fa-qrcode","QRIS","Gunakan QRIS untuk pembayaran.","Buka QRIS"],
+"Tagihan":["fa-receipt","Tagihan","Kelola pembayaran dan tagihan.","Lihat Tagihan"],
+"Dompet":["fa-wallet","Dompet","Saldo dan informasi dompet kamu.","Lihat Dompet"],
+"Aktivitas":["fa-clock-rotate-left","Aktivitas","Riwayat transaksi kamu akan tampil di sini.","Belum Ada Transaksi"],
+"Notifikasi":["fa-bell","Notifikasi","Pemberitahuan akun dan transaksi.","Belum Ada Notifikasi"],
+"Profil":["fa-user","Profil","Kelola data akun Suzuru Dompet.","Keluar dari Akun"]
+};
+function openFeature(name){
+  const f=features[name];
+  if(!f)return;
+  document.getElementById("screenTitle").textContent=f[1];
+  const extra=name==="Profil"?`<button class="primary logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>`:`<button class="primary" onclick="showToast('Fitur dummy siap digunakan')">${f[3]}</button>`;
+  document.getElementById("screenBody").innerHTML=`<div class="feature-card"><div class="feature-icon"><i class="fa-solid ${f[0]}"></i></div><h3>${f[1]}</h3><p>${f[2]}</p>${extra}</div>`;
+  document.getElementById("screen").classList.remove("hidden");
+}
+function closeFeature(){document.getElementById("screen").classList.add("hidden")}
+function logout(){
+  localStorage.removeItem(SESSION);
+  closeFeature();showAuth();switchAuth("login");
+  document.getElementById("loginEmail").value="";document.getElementById("loginPin").value="";
+  showToast("Kamu sudah keluar");
+}
+function showToast(msg){
+  clearTimeout(toastTimer);
+  const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
+  toastTimer=setTimeout(()=>t.classList.remove("show"),1900);
+}
+(function init(){
+  const user=getUser(), session=localStorage.getItem(SESSION);
+  if(user&&session==="1")showHome();else showAuth();
+})();
 </script>
-
 </body>
 </html>
