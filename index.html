@@ -3,191 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0a10">
-<title>Arya Anime</title>
+<meta name="theme-color" content="#080b09">
+<title>Arya Music</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0b0a10;--panel:#14121c;--panel2:#1b1826;--line:#2c2740;--text:#f6f2ff;--muted:#9a93b0;--ac:#ff5c8a;--ac2:#a855f7;--nav:62px;color-scheme:dark}
+:root{--bg:#080b09;--panel:#121714;--panel2:#171d19;--line:#29342d;--text:#f1fff3;--muted:#91a596;--green:#1ed760;--nav:62px;color-scheme:dark}
 html{-webkit-tap-highlight-color:transparent}
-body{min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#2a1650 0%,#0b0a10 58%) no-repeat,var(--bg);color:var(--text);font:14px/1.5 'DM Sans',sans-serif;overflow-x:hidden}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#183a29 0%,#080b09 55%) no-repeat,var(--bg);color:var(--text);font:14px/1.5 'DM Sans',sans-serif;overflow-x:hidden}
 button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}a{color:inherit}
-:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 [hidden]{display:none!important}
-.wrap{max-width:1000px;margin:auto;padding:0 16px}
-.top{padding:14px 0;background:#0b0a10e8;border-bottom:1px solid #1d1a2a}
+.wrap{max-width:960px;margin:auto;padding:0 16px}
+.top{padding:14px 0;background:#080b09e8;border-bottom:1px solid #202923}
 .brand{display:flex;align-items:center;gap:9px;font:700 17px 'Sora',sans-serif}
-.aa-logo{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#fff;color:#000;padding:3px;overflow:hidden}
+.am-logo{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#fff;color:#000;padding:3px;overflow:hidden;font:700 13px 'Sora',sans-serif}
 .lg{width:100%;height:100%;display:block}
-.lg .sw{stroke-dasharray:180;stroke-dashoffset:0}
+.lg .sw{stroke-dasharray:160;stroke-dashoffset:0}
 .lg.anim .a{animation:lga 1s cubic-bezier(.2,.8,.2,1) both}
 .lg.anim .m{animation:lgm 1s cubic-bezier(.2,.8,.2,1) both}
-.lg.anim .sw{stroke-dashoffset:180;animation:lgs .9s .9s ease forwards}
-@keyframes lga{from{transform:translateX(-90px);opacity:0}to{transform:none;opacity:1}}
-@keyframes lgm{from{transform:translateX(90px);opacity:0}to{transform:none;opacity:1}}
+.lg.anim .sw{stroke-dashoffset:160;animation:lgs .9s .9s ease forwards}
+@keyframes lga{from{transform:translateX(-80px);opacity:0}to{transform:none;opacity:1}}
+@keyframes lgm{from{transform:translateX(80px);opacity:0}to{transform:none;opacity:1}}
 @keyframes lgs{to{stroke-dashoffset:0}}
 @keyframes lgpop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
-.grad{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
-.hero{text-align:center;margin-top:12px;padding:26px 16px;background:linear-gradient(135deg,#2a1248,#12101c 70%);border:1px solid #3a2a63;border-radius:22px}
+.about .am-logo{display:grid}
+.hero{text-align:center;margin-top:12px;padding:26px 16px;background:linear-gradient(135deg,#11281c,#0b110d 70%);border:1px solid #203b2a;border-radius:22px}
 .hero h1{font:700 clamp(22px,4vw,30px)/1.2 'Sora',sans-serif;letter-spacing:-.03em}
 .hero h1 small{display:block;color:var(--muted);font:500 .6em 'DM Sans',sans-serif;margin-bottom:6px}
-.hero p{max-width:46ch;color:var(--muted);margin:10px auto 0}
+.hero p{max-width:45ch;color:var(--muted);margin:10px auto 0}
 .hero.compact{padding:16px}.hero.compact p,.hero.compact h1 small{display:none}.hero.compact h1{font-size:20px}
-.search{display:flex;align-items:center;gap:5px;margin:18px auto 0;max-width:560px;padding:4px 5px 4px 14px;background:var(--panel2);border:1px solid #3b3456;border-radius:999px}
-.hero.compact .search{margin-top:12px}.search:focus-within{border-color:var(--ac)}
+.search{display:flex;align-items:center;gap:5px;margin:18px auto 0;max-width:560px;padding:4px 5px 4px 14px;background:var(--panel2);border:1px solid #354138;border-radius:999px}
+.hero.compact .search{margin-top:12px}.search:focus-within{border-color:var(--green)}
 .search i.lead{color:var(--muted)}.search input{flex:1;min-width:0;background:none;border:0;outline:0;padding:9px 5px;font-size:15px}
 .x{width:30px;height:30px;border-radius:50%;color:var(--muted)}
-.go{min-width:70px;height:37px;padding:0 16px;border-radius:99px;font-weight:700}.go:disabled{opacity:.65}
+.go{min-width:70px;height:37px;padding:0 16px;border-radius:99px;background:var(--green);color:#061008;font-weight:700}.go:disabled{opacity:.65}
 .rhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 10px;padding:0 4px}
-.rhead h2{font:600 15px 'Sora',sans-serif}.rhead span{font-size:12px;color:var(--muted)}
-.row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 8px;scrollbar-width:none}.row::-webkit-scrollbar{display:none}
-.row .ac{flex:0 0 132px;scroll-snap-align:start}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.ac{min-width:0;cursor:pointer;text-align:left}
-.poster{position:relative;aspect-ratio:2/3;border-radius:12px;overflow:hidden;background:var(--panel2);display:grid;place-items:center;color:var(--muted);border:1px solid #2a2440;transition:transform .2s,border-color .2s}
-.ac:hover .poster{transform:translateY(-3px);border-color:var(--ac)}
-.poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.sc{position:absolute;top:6px;left:6px;background:#000b;border-radius:8px;padding:1px 7px;font-size:11px;font-weight:700}.sc i{color:#ffcf40;margin-right:3px;font-size:10px}
-.ac h3{font:600 12px/1.35 'Sora',sans-serif;margin-top:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ac p{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sk .poster{animation:pulse 1.2s infinite alternate}@keyframes pulse{to{opacity:.5}}
+.rhead h2{font:600 15px 'Sora',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rhead span{font-size:12px;color:var(--muted)}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.card{display:flex;flex-direction:column;align-items:center;min-width:0;padding:10px;background:var(--panel);border:1px solid #222d25;border-radius:16px;text-align:center;cursor:pointer;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:#3b6248}.card.active{border-color:var(--green)}
+.cv{position:relative;width:100%;aspect-ratio:1;background:var(--panel2);border-radius:12px;overflow:hidden;display:grid;place-items:center;color:var(--muted)}
+.cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dur{position:absolute;bottom:5px;right:5px;background:#000b;border-radius:6px;padding:1px 5px;font-size:10px}
+.info{width:100%;min-width:0;margin-top:8px}.info h3{font:600 12px/1.4 'Sora',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.info p{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acts{margin-top:9px}
+.ib{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;flex:none}
+.ib.main{background:var(--green);color:#061008;border-color:var(--green)}.ib:disabled{opacity:.4}
+.eq{position:absolute;inset:0;display:none;align-items:center;justify-content:center;gap:4px;background:#0009}.card.playing .eq{display:flex}
+.eq span{width:4px;height:23px;background:var(--green);border-radius:3px;animation:wave .7s infinite alternate}.eq span:nth-child(2){animation-delay:.2s}.eq span:nth-child(3){animation-delay:.4s}
+@keyframes wave{to{transform:scaleY(.25);opacity:.6}}
 .state{text-align:center;padding:38px 16px;max-width:420px;margin:auto}.state h3{font:600 15px 'Sora',sans-serif;margin:10px 0 5px}.state p{color:var(--muted);font-size:13px}
-.retry{margin-top:14px;padding:8px 17px;border-radius:99px;font-weight:700}
-.about{max-width:460px;margin:34px auto 0;text-align:center}.about .aa-logo{width:60px;height:60px;margin:0 auto 20px;border-radius:17px;padding:8px}
-.about h2{font:700 20px 'Sora',sans-serif}.about p{color:var(--muted);margin:8px 0 18px}
-.tip{text-align:left;margin:0 0 14px;padding:12px 14px;background:#1a1230;border:1px solid #3a2a63;border-radius:14px;font-size:12.5px;color:#cfc6ea}.tip b{color:var(--text)}
-.links{display:grid;gap:9px}.lk{display:flex;align-items:center;gap:12px;padding:13px 15px;background:var(--panel);border:1px solid #2a2440;border-radius:14px;text-decoration:none;text-align:left}
-.lk>i:first-child{width:22px;text-align:center;color:var(--ac);font-size:19px}.lk>i:last-child{color:var(--muted);font-size:12px}.lk span{flex:1}.lk small{display:block;color:var(--muted);font-size:11px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 16px calc(var(--nav) + 36px)}
-.bnav{position:fixed;z-index:60;bottom:0;left:0;right:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#0b0a10f5;backdrop-filter:blur(16px);border-top:1px solid var(--line)}
-.tabs{display:flex;max-width:420px;margin:auto;padding:3px;gap:3px;background:var(--panel);border:1px solid var(--line);border-radius:99px}
-.tab{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 4px;border-radius:99px;text-decoration:none;font-size:12px;color:var(--muted)}.tab.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;font-weight:700}
+.retry{margin-top:14px;padding:8px 17px;border-radius:99px;background:var(--green);color:#061008;font-weight:700}
+.about{max-width:460px;margin:34px auto 0;text-align:center}.about .am-logo{width:56px;height:56px;font-size:20px;margin:0 auto 20px;border-radius:16px}
+.about h2{font:700 20px 'Sora',sans-serif}.about p{color:var(--muted);margin:8px 0 22px}
+.tip{text-align:left;margin:0 0 14px;padding:12px 14px;background:#10281a;border:1px solid #234a33;border-radius:14px;font-size:12.5px}.tip b{color:var(--text)}.tip b i{color:var(--green);margin-right:6px}.about .tip p{margin:6px 0 0;color:#b6c9bb}
+.modal{position:fixed;inset:0;z-index:3500;background:#000b;display:grid;place-items:end center;padding:16px}
+.sheet{width:100%;max-width:420px;padding:20px;background:var(--panel);border:1px solid #314337;border-radius:20px}
+.sheet h3{font:700 17px 'Sora',sans-serif}.sheet h3 i{color:var(--green);margin-right:8px}.sheet p{margin:8px 0;color:#b6c9bb}.sheet ol{margin:0 0 16px 20px;color:#d8e8dc}.sheet li{margin:6px 0}
+.links{display:grid;gap:9px}.lk{display:flex;align-items:center;gap:12px;padding:13px 15px;background:var(--panel);border:1px solid #222d25;border-radius:14px;text-decoration:none;text-align:left}
+.lk>i:first-child{width:22px;text-align:center;color:var(--green);font-size:19px}.lk>i:last-child{color:var(--muted);font-size:12px}.lk span{flex:1}.lk small{display:block;color:var(--muted);font-size:11px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 16px calc(var(--nav) + 40px)}
+body.has-player footer{padding-bottom:calc(var(--nav) + 120px)}
+.bnav{position:fixed;z-index:60;bottom:0;left:0;right:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#080b09f5;backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+.tabs{display:flex;max-width:360px;margin:auto;padding:3px;gap:3px;background:var(--panel);border:1px solid var(--line);border-radius:99px}
+.tab{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 4px;border-radius:99px;text-decoration:none;font-size:12px;color:var(--muted)}.tab.on{background:var(--green);color:#061008;font-weight:700}
+.player{position:fixed;z-index:50;left:10px;right:10px;bottom:calc(var(--nav) + env(safe-area-inset-bottom) + 8px);max-width:720px;margin:auto;padding:8px;background:#101713f5;backdrop-filter:blur(16px);border:1px solid #314337;border-radius:15px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;align-items:center;transform:translateY(170%);transition:transform .3s}
+body.has-player .player{transform:none}
+.p-info{display:flex;align-items:center;gap:9px;min-width:0;cursor:pointer}.p-cv{width:40px;height:40px;flex:none;border-radius:8px;background:var(--panel2);overflow:hidden;display:grid;place-items:center}.p-cv img{width:100%;height:100%;object-fit:cover}
+.p-txt{min-width:0}.p-txt b,.p-txt span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.p-txt b{font-size:12px}.p-txt span{font-size:11px;color:var(--muted)}
+.p-ctl{display:flex;align-items:center;gap:4px}.player .ib{width:30px;height:30px;font-size:11px}.player .ib.main{width:34px;height:34px}
+.p-seek{grid-column:1/-1;display:flex;align-items:center;gap:7px;font-size:10px;color:var(--muted)}.p-seek span{min-width:30px}.p-seek span:last-child{text-align:right}
+input[type=range]{flex:1;min-width:0;width:100%;height:4px;accent-color:var(--green);cursor:pointer}
 .toasts{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:3000;width:calc(100% - 24px);max-width:380px;pointer-events:none}
-.toast{margin-bottom:6px;padding:10px 13px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #0008;font-size:13px}.toast i{color:var(--ac);margin-right:8px}
-.boot{position:fixed;inset:0;z-index:4000;background:#07060b;display:grid;place-items:center;transition:opacity .45s,visibility .45s}.boot.done{opacity:0;visibility:hidden}
-.boot .aa-logo{width:108px;height:108px;border-radius:28px;margin:auto;padding:12px;animation:lgpop .6s cubic-bezier(.2,1.4,.4,1) both}
-.boot b{display:block;text-align:center;margin-top:16px;font:700 19px 'Sora',sans-serif;letter-spacing:.04em}.boot b span{background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
-/* detail */
-.sheet{position:fixed;inset:0;z-index:1000;overflow:auto;background:#0b0a10f2;backdrop-filter:blur(10px);padding:14px 16px calc(30px + env(safe-area-inset-bottom));transform:translateY(100%);pointer-events:none;transition:transform .3s}
-.sheet.open{transform:none;pointer-events:auto}
-.sh-in{max-width:720px;margin:auto}
-.sh-close{width:42px;height:42px;font-size:18px;border-radius:50%;background:var(--panel2);border:1px solid var(--line)}
-.d-top{display:flex;gap:14px;margin-top:12px}.d-top .poster{flex:0 0 120px;width:120px}
-.d-top h2{font:700 20px/1.25 'Sora',sans-serif}.d-top .alt{color:var(--muted);font-size:12px;margin-top:2px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chip{padding:3px 10px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);font-size:11px;color:#d8d0f0}.chip.hot{background:#3a1230;border-color:#6b2350;color:#ffc2d6}
-.d-sec{margin-top:18px}.d-sec h3{font:600 14px 'Sora',sans-serif;margin-bottom:6px}.d-sec p{color:#cfc6ea;white-space:pre-line}
-.btns{display:grid;gap:8px}.btn{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--panel);border:1px solid #2a2440;text-decoration:none;font-weight:600}
-.btn i:first-child{color:var(--ac);width:20px;text-align:center}.btn i:last-child{margin-left:auto;color:var(--muted);font-size:12px}.btn.p{background:linear-gradient(135deg,var(--ac),var(--ac2));border:0;color:#fff}.btn.p i{color:#fff}
-.trailer{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;margin-top:8px}.trailer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-@media(min-width:520px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(min-width:760px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}.row .ac{flex-basis:150px}}
+.toast{margin-bottom:6px;padding:10px 13px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #0008;font-size:13px}.toast i{color:var(--green);margin-right:8px}.toast.err i{color:#ff6868}
+.boot{position:fixed;inset:0;z-index:4000;background:#050705;display:grid;place-items:center;transition:opacity .45s,visibility .45s}.boot.done{opacity:0;visibility:hidden}
+.boot .am-logo{width:104px;height:104px;border-radius:26px;margin:auto;padding:12px;animation:lgpop .6s cubic-bezier(.2,1.4,.4,1) both}.about .am-logo{padding:8px}.boot b{display:block;text-align:center;margin-top:16px;font:700 19px 'Sora',sans-serif}.boot b span{color:var(--green)}
+/* full player (iframe tetap dirender walau tertutup, supaya musik tidak berhenti) */
+.full-player{position:fixed;inset:0;z-index:1000;overflow:auto;background:radial-gradient(ellipse at top,#1a3d2a 0%,#101712 42%,#070907 100%);padding:16px max(18px,calc((100vw - 760px)/2)) calc(28px + env(safe-area-inset-bottom));transform:translateY(100%);pointer-events:none;transition:transform .3s}
+.full-player.open{transform:none;pointer-events:auto}
+.fp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.fp-top button{font-size:20px;padding:10px;color:#d8e8dc}.fp-kicker{font-size:11px;color:#a7c2ae;letter-spacing:2px;text-transform:uppercase;text-align:center}
+.fp-video{width:100%;aspect-ratio:16/9;min-height:200px;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 24px 70px #0009}.fp-video iframe,.fp-video #ytp{width:100%;height:100%;display:block}
+.fp-meta{margin:20px 0 6px}.fp-meta h2{font-size:clamp(22px,4vw,32px);letter-spacing:-.5px}.fp-meta p{color:#b6c9bb}
+.fp-times{display:flex;justify-content:space-between;color:#b2c4b7;font-size:12px;margin-top:6px}
+.fp-controls{display:flex;justify-content:space-between;align-items:center;margin:18px 0}.fp-controls button{font-size:21px;color:#c3d5c8;width:44px;height:44px}.fp-controls .fp-play{width:64px;height:64px;border-radius:50%;background:var(--green);color:#071109;font-size:24px}
+.fp-bottom{display:flex;align-items:center;gap:12px;color:#bdd0c2}.fp-bottom input{max-width:200px}
+.fp-queue{border-top:1px solid #2c3c30;margin-top:24px;padding-top:16px}.fp-queue h3{font-size:16px;margin-bottom:6px}
+.fp-qi{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff0c;cursor:pointer}.fp-qi img{width:44px;height:44px;object-fit:cover;border-radius:6px}.fp-qi small{display:block;color:#9fb4a4}.fp-qi>i{margin-left:auto;color:var(--green)}
+@media(min-width:700px){.list{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+@media(min-width:520px){.list{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.fp-cover{display:block;width:100%;max-height:46vh;aspect-ratio:1;object-fit:cover;border-radius:16px;background:#1b2920;box-shadow:0 24px 70px #0009;margin:0 auto}
+@media(min-width:700px){.fp-cover{max-width:420px}}
 </style>
 </head>
 <body>
-<div class="boot" id="boot"><div><span class="aa-logo" data-logo="anim"></span><b>ARYA <span>ANIME</span></b></div></div>
-<header class="top"><div class="wrap"><div class="brand"><span class="aa-logo" data-logo></span>Arya Anime</div></div></header>
+<div class="boot" id="boot"><div><span class="am-logo" data-logo="anim"></span><b>ARYA <span>MUSIC</span></b></div></div>
+<header class="top"><div class="wrap"><div class="brand"><span class="am-logo" data-logo></span>Arya Music</div></div></header>
 <main class="wrap">
-<section class="page" id="pg-home"><div class="hero"><h1><small>Selamat datang di</small>Arya Anime</h1><p>Temukan anime yang lagi tayang dan terpopuler, lihat trailer, lalu tonton lewat layanan resmi.</p></div><div id="homeRows"></div><div class="state" id="stateH" hidden></div></section>
-<section class="page" id="pg-cari" hidden><div class="hero" id="hero"><h1><small>Cari anime favoritmu</small>Judul apa hari ini?</h1><p>Ketik judul dalam bahasa Inggris atau Jepang (romaji).</p>
-<form class="search" id="form" autocomplete="off"><i class="fa-solid fa-magnifying-glass lead"></i><input id="q" placeholder="Cari judul anime" aria-label="Cari anime" enterkeyhint="search"><button type="button" class="x" id="clear" hidden aria-label="Hapus"><i class="fa-solid fa-xmark"></i></button><button class="go grad" id="go" type="submit">Cari</button></form></div>
-<div class="rhead" id="head" hidden><h2 id="ttl"></h2><span id="cnt"></span></div><div class="grid" id="list"></div><div class="state" id="state" hidden></div></section>
-<section class="page" id="pg-daftar" hidden><div class="rhead"><h2>Daftarku</h2><span id="cntD"></span></div><div class="grid" id="listD"></div><div class="state" id="stateD" hidden></div></section>
-<section class="page" id="pg-tentang" hidden><div class="about"><span class="aa-logo" data-logo></span><h2>Arya Anime</h2><p>Katalog anime dengan info, trailer, dan tautan nonton resmi. Dibuat oleh <b style="color:var(--text)">Adfaya Fathin Arya</b>.</p>
-<div class="tip"><b>Soal menonton:</b> Arya Anime tidak menyimpan atau memutar episode. Tombol tonton mengarah ke layanan resmi seperti Crunchyroll, Netflix, atau kanal YouTube resmi (Muse Indonesia, Ani-One Asia). Data dari MyAnimeList lewat Jikan API.</div>
-<div class="links">
+<section class="page" id="pg-home"><div class="hero"><h1><small>Pilihan untukmu</small>Lagu trending</h1><p>Lagu trending minggu ini dari Audius. Gratis, lagu penuh, dan bisa jalan di latar belakang.</p></div>
+<div class="rhead" id="headH" hidden><h2>Trending minggu ini</h2><span id="cntH"></span></div><div class="list" id="listH"></div><div class="state" id="stateH" hidden></div></section>
+<section class="page" id="pg-cari" hidden><div class="hero" id="hero"><h1><small>Temukan lagunya,</small>lalu putar</h1><p>Ketik <b>judul lagu</b> atau <b>nama artis</b>.</p>
+<form class="search" id="form" autocomplete="off"><i class="fa-solid fa-magnifying-glass lead"></i><input id="q" placeholder="Cari lagu atau artis" aria-label="Cari lagu" enterkeyhint="search"><button type="button" class="x" id="clear" hidden aria-label="Hapus"><i class="fa-solid fa-xmark"></i></button><button class="go" id="go" type="submit">Cari</button></form></div>
+<div class="rhead" id="head" hidden><h2 id="ttl"></h2><span id="cnt"></span></div><div class="list" id="list"></div><div class="state" id="state" hidden></div></section>
+<section class="page" id="pg-tentang" hidden><div class="about"><span class="am-logo" data-logo></span><h2>Arya Music</h2><p>Cari dan putar lagu dengan mudah. Dibuat oleh <b style="color:var(--text)">Adfaya Fathin Arya</b>.</p><div class="tip"><b><i class="fa-solid fa-moon"></i> Putar saat layar mati</b><p>Lagu diputar langsung dari server Audius lewat pemutar audio biasa, jadi tidak ikut berhenti seperti video YouTube. Kontrol play, pause, next, dan geser lagu muncul di layar kunci dan notifikasi. Katalognya musik independen dari artis Audius.</p></div><div class="links">
 <a class="lk" href="https://instagram.com/adfayafathinarya" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i><span><b>Instagram</b><small>Adfaya Fathin Arya</small></span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 <a class="lk" href="https://tiktok.com/@adfayafathinarya09" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i><span><b>TikTok</b><small>Adfaya Fathin Arya</small></span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 <a class="lk" href="https://whatsapp.com/channel/0029Vb94ZxHBadmday3k9Q0I" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i><span><b>Saluran WhatsApp</b><small>Info &amp; update</small></span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 </div></div></section>
 </main>
-<footer>Data: MyAnimeList via Jikan. Tonton lewat layanan resmi.<br>Dibuat oleh <b style="color:var(--ac)">Arya</b> · © 2026</footer>
-<nav class="bnav" aria-label="Halaman"><div class="tabs"><a class="tab on" href="#home" data-pg="home"><i class="fa-solid fa-house"></i> Home</a><a class="tab" href="#cari" data-pg="cari"><i class="fa-solid fa-magnifying-glass"></i> Cari</a><a class="tab" href="#daftar" data-pg="daftar"><i class="fa-solid fa-bookmark"></i> Daftarku</a><a class="tab" href="#tentang" data-pg="tentang"><i class="fa-solid fa-circle-info"></i> Tentang</a></div></nav>
-<section class="sheet" id="sheet" role="dialog" aria-label="Detail anime"><div class="sh-in"><button class="sh-close" id="shClose" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button><div id="shBody"></div></div></section>
+<footer>Musik dari Audius. Hargai hak cipta para musisi.<br>Dibuat oleh <b style="color:var(--green)">Arya</b> · © 2026</footer>
+<nav class="bnav" aria-label="Halaman"><div class="tabs"><a class="tab on" href="#home" data-pg="home"><i class="fa-solid fa-house"></i> Home</a><a class="tab" href="#cari" data-pg="cari"><i class="fa-solid fa-magnifying-glass"></i> Cari</a><a class="tab" href="#tentang" data-pg="tentang"><i class="fa-solid fa-circle-info"></i> Tentang</a></div></nav>
+
+<div class="player" id="player" role="region" aria-label="Pemutar musik">
+<div class="p-info" id="pInfo"><div class="p-cv" id="pCv"><i class="fa-solid fa-music"></i></div><div class="p-txt"><b id="pTitle"></b><span id="pArtist"></span></div></div>
+<div class="p-ctl"><button class="ib" id="pPrev" aria-label="Sebelumnya"><i class="fa-solid fa-backward-step"></i></button><button class="ib main" id="pPlay" aria-label="Putar"><i class="fa-solid fa-play"></i></button><button class="ib" id="pNext" aria-label="Berikutnya"><i class="fa-solid fa-forward-step"></i></button></div>
+<div class="p-seek"><span id="curT">0:00</span><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Posisi lagu"><span id="totT">0:00</span></div></div>
+
+<section class="full-player" id="fullPlayer" role="dialog" aria-label="Pemutar musik">
+<div class="fp-top"><button id="fpClose" aria-label="Tutup"><i class="fa-solid fa-chevron-down"></i></button><div class="fp-kicker">Sedang diputar<br><b style="letter-spacing:0;text-transform:none;font-size:14px;color:#fff">Arya Music</b></div><span style="width:40px"></span></div>
+<img class="fp-cover" id="fpCover" alt="Cover lagu">
+<div class="fp-meta"><h2 id="fpTitle">Pilih lagu</h2><p id="fpArtist"></p></div>
+<input id="fpSeek" type="range" min="0" max="1000" value="0" aria-label="Geser posisi"><div class="fp-times"><span id="fpCur">0:00</span><span id="fpDur">0:00</span></div>
+<div class="fp-controls"><button id="fpShuffle" aria-label="Acak"><i class="fa-solid fa-shuffle"></i></button><button id="fpPrev" aria-label="Sebelumnya"><i class="fa-solid fa-backward-step"></i></button><button class="fp-play" id="fpPlay" aria-label="Putar"><i class="fa-solid fa-play"></i></button><button id="fpNext" aria-label="Berikutnya"><i class="fa-solid fa-forward-step"></i></button><button id="fpRepeat" aria-label="Ulangi"><i class="fa-solid fa-repeat"></i></button></div>
+<div class="fp-bottom"><i class="fa-solid fa-volume-low"></i><input id="fpVolume" type="range" min="0" max="100" value="80" aria-label="Volume"><i class="fa-solid fa-volume-high"></i></div>
+<div class="fp-queue"><h3>Berikutnya</h3><div id="fpQueue"></div></div>
+</section>
 <div class="toasts" id="toasts"></div>
 
 <script>
 'use strict';
-const API='https://api.jikan.moe/v4';
+/* Musik dari Audius (gratis, lagu penuh). Diputar lewat <audio>, jadi bisa jalan di latar belakang. */
+const API='https://api.audius.co/v1',APP='arya_music';
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const safeImg=u=>/^https:\/\/cdn\.myanimelist\.net\//.test(u||'')?u:'';
-const safeUrl=u=>/^https?:\/\//.test(u||'')?u:'#';
-function toast(t){const d=document.createElement('div');d.className='toast';d.innerHTML='<i class="fa-solid fa-circle-check"></i><span>'+esc(t)+'</span>';$('#toasts').appendChild(d);setTimeout(()=>d.remove(),3000)}
-
-/* logo AA: dua huruf A yang menyatu */
-const A='<path d="M65 12h9l33 102H93z"/><path d="M65 12h4L38 114h-4z"/><path d="M50 68h32v2.5H50z"/><path d="M20 112h32v3H20zM86 112h34v3H86z"/>';
-const LOGO='<svg class="lg" viewBox="6 0 170 140" role="img" aria-label="AA"><g class="a" fill="currentColor">'+A+'</g><g transform="translate(46 0)"><g class="m" fill="currentColor">'+A+'</g></g><path class="sw" d="M18 127q75 14 150 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+const fmt=s=>{s=Number(s);if(!isFinite(s)||s<0)s=0;return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')};
+const toasts=$('#toasts');
+const LOGO='<svg class="lg" viewBox="-10 0 230 140" role="img" aria-label="AM"><g class="a" fill="currentColor"><path d="M65 12h9l33 102H93z"/><path d="M65 12h4L38 114h-4z"/><path d="M50 68h32v2.5H50z"/><path d="M20 112h32v3H20zM86 112h34v3H86z"/></g><g transform="translate(-12 0)"><g class="m" fill="currentColor"><path d="M112 20h4v94h-4z"/><path d="M112 20h10l36 94h-13z"/><path d="M158 114L184 20h3l-26 94z"/><path d="M182 20h4v94h-4z"/><path d="M104 17h22v3h-22zM174 17h24v3h-24zM104 112h22v3h-22zM172 112h22v3h-22z"/></g></g><path class="sw" d="M42 118C10 130 0 92 30 89c18-1 17 20-1 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path class="sw" d="M174 114c8 10 22 12 34 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
 document.querySelectorAll('[data-logo]').forEach(e=>{e.innerHTML=LOGO;if(e.dataset.logo==='anim')e.firstChild.classList.add('anim')});
+function toast(text,type){const d=document.createElement('div');d.className='toast '+(type||'ok');d.innerHTML='<i class="fa-solid '+(type==='err'?'fa-circle-exclamation':'fa-circle-check')+'"></i><span>'+esc(text)+'</span>';toasts.appendChild(d);setTimeout(()=>d.remove(),3400)}
 
-/* ---------- Jikan (antre supaya tidak kena batas 3 permintaan/detik) ---------- */
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));let last=0,chain=Promise.resolve();
-function jk(path){const run=async()=>{for(let t=0;t<3;t++){const w=450-(Date.now()-last);if(w>0)await sleep(w);last=Date.now();const r=await fetch(API+path);if(r.status===429){await sleep(1300);continue}if(!r.ok)throw new Error('Server anime sedang bermasalah ('+r.status+').');return r.json()}throw new Error('Terlalu banyak permintaan. Coba lagi sebentar.')};const p=chain.then(run);chain=p.catch(()=>{});return p}
+/* ---------- data ---------- */
+const safe=u=>/^https:\/\//.test(u||'')?u:'';
+async function api(path,params){const r=await fetch(API+path+'?'+new URLSearchParams(Object.assign({app_name:APP},params)));if(!r.ok)throw new Error('Server Audius mengembalikan kesalahan ('+r.status+').');const j=await r.json();return j.data}
 const msg=e=>e instanceof TypeError?'Tidak dapat terhubung ke server. Periksa koneksi internet.':(e&&e.message)||'Terjadi kesalahan.';
-function nm(a){const j=a.images&&a.images.jpg||{};return{id:a.mal_id,title:a.title_english||a.title||'Tanpa judul',img:safeImg(j.large_image_url||j.image_url),score:a.score,eps:a.episodes,type:a.type||'',year:a.year||(a.aired&&a.aired.prop&&a.aired.prop.from&&a.aired.prop.from.year)||''}}
-function card(a,sk){if(sk)return'<div class="ac sk"><div class="poster"></div><h3>&nbsp;</h3></div>';
-return'<div class="ac" data-id="'+a.id+'"><div class="poster"><i class="fa-solid fa-film"></i>'+(a.img?'<img src="'+esc(a.img)+'" alt="" loading="lazy">':'')+(a.score?'<span class="sc"><i class="fa-solid fa-star"></i>'+Number(a.score).toFixed(1)+'</span>':'')+'</div><h3 title="'+esc(a.title)+'">'+esc(a.title)+'</h3><p>'+esc([a.type,a.eps?a.eps+' eps':'',a.year].filter(Boolean).join(' · '))+'</p></div>'}
-const dedupe=l=>{const s=new Set();return l.filter(x=>x.id&&!s.has(x.id)&&s.add(x.id))};
-const cache={};
+function norm(x){const a=x.artwork||{};return{id:x.id,title:x.title||'Tanpa judul',artist:(x.user&&x.user.name)||'Artis tidak diketahui',duration:x.duration>0?fmt(x.duration):'',thumb:safe(a['480x480']||a['150x150']||a['1000x1000']),src:API+'/tracks/'+encodeURIComponent(x.id)+'/stream?app_name='+APP}}
+async function tracks(path,params){const d=await api(path,params);return(Array.isArray(d)?d:[]).filter(x=>x&&x.id&&x.is_streamable!==false).map(norm)}
 
 /* ---------- halaman ---------- */
-const pgs={home:$('#pg-home'),cari:$('#pg-cari'),daftar:$('#pg-daftar'),tentang:$('#pg-tentang')};
-function route(){const h=location.hash.slice(1),n=pgs[h]?h:'home';Object.keys(pgs).forEach(k=>{pgs[k].hidden=k!==n;document.querySelector('[data-pg='+k+']').classList.toggle('on',k===n)});if(n==='daftar')renderList();window.scrollTo(0,0)}
-window.addEventListener('hashchange',route);
+const mk=o=>Object.assign({shown:[],req:0,last:''},o);
+const P={home:mk({page:$('#pg-home'),tab:$('[data-pg=home]'),head:$('#headH'),cnt:$('#cntH'),list:$('#listH'),state:$('#stateH')}),
+cari:mk({page:$('#pg-cari'),tab:$('[data-pg=cari]'),hero:$('#hero'),form:$('#form'),q:$('#q'),clr:$('#clear'),go:$('#go'),head:$('#head'),ttl:$('#ttl'),cnt:$('#cnt'),list:$('#list'),state:$('#state')}),
+tentang:mk({page:$('#pg-tentang'),tab:$('[data-pg=tentang]')})};
+const pages=[P.home,P.cari],allPg=[P.home,P.cari,P.tentang];
+function route(){const h=location.hash.slice(1),n=['cari','tentang'].includes(h)?h:'home';allPg.forEach(pg=>{const on=pg===P[n];pg.page.hidden=!on;pg.tab.classList.toggle('on',on)});window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);route();
+function skeleton(pg,n){pg.list.innerHTML=Array.from({length:n},()=>'<div class="card"><div class="cv"></div><div class="info">Memuat...</div></div>').join('')}
+function showState(pg,ic,title,text,retry){pg.state.innerHTML='<i class="fa-solid '+ic+'" style="font-size:26px;color:var(--muted)"></i><h3>'+esc(title)+'</h3><p>'+esc(text)+'</p>'+(retry?'<button class="retry" data-retry>Coba lagi</button>':'');pg.state.hidden=false}
+function render(pg){pg.list.innerHTML=pg.shown.map((t,i)=>'<div class="card" data-i="'+i+'"><div class="cv"><i class="fa-solid fa-music"></i>'+(t.thumb?'<img src="'+esc(t.thumb)+'" alt="" loading="lazy">':'')+(t.duration?'<span class="dur">'+esc(t.duration)+'</span>':'')+'<div class="eq"><span></span><span></span><span></span></div></div><div class="info"><h3 title="'+esc(t.title)+'">'+esc(t.title)+'</h3><p>'+esc(t.artist)+'</p></div><div class="acts"><button class="ib main" aria-label="Putar"><i class="fa-solid fa-play"></i></button></div></div>').join('');paint()}
+function setBusy(b){P.cari.go.disabled=b;P.cari.go.innerHTML=b?'<i class="fa-solid fa-circle-notch fa-spin"></i>':'Cari'}
+async function search(v){const pg=P.cari,my=++pg.req;pg.last=v;pg.hero.classList.add('compact');pg.head.hidden=true;pg.state.hidden=true;setBusy(true);skeleton(pg,6);
+try{pg.shown=await tracks('/tracks/search',{query:v,limit:24});if(my!==pg.req)return;
+if(!pg.shown.length){pg.list.innerHTML='';showState(pg,'fa-compact-disc','Lagu tidak ditemukan','Katalog Audius berisi musik independen. Coba kata kunci lain.');return}
+pg.ttl.textContent='Hasil untuk “'+v+'”';pg.cnt.textContent=pg.shown.length+' lagu';pg.head.hidden=false;render(pg)}
+catch(e){if(my!==pg.req)return;pg.shown=[];pg.list.innerHTML='';showState(pg,'fa-triangle-exclamation','Gagal memuat hasil',msg(e),true)}
+finally{if(my===pg.req)setBusy(false)}}
+async function loadHome(){const pg=P.home,my=++pg.req;pg.state.hidden=true;skeleton(pg,6);
+try{pg.shown=await tracks('/tracks/trending',{limit:24,time:'week'});if(my!==pg.req)return;if(!pg.shown.length)throw new Error('Lagu trending belum tersedia.');pg.cnt.textContent=pg.shown.length+' lagu';pg.head.hidden=false;render(pg)}
+catch(e){pg.shown=[];pg.list.innerHTML='';showState(pg,'fa-triangle-exclamation','Gagal memuat lagu',msg(e),true)}}
+P.cari.form.addEventListener('submit',e=>{e.preventDefault();const v=P.cari.q.value.trim();if(v)search(v)});
+P.cari.q.addEventListener('input',()=>P.cari.clr.hidden=!P.cari.q.value);
+P.cari.clr.addEventListener('click',()=>{P.cari.q.value='';P.cari.clr.hidden=true;P.cari.q.focus()});
+pages.forEach(pg=>{pg.state.addEventListener('click',e=>{if(!e.target.closest('[data-retry]'))return;if(pg===P.home)loadHome();else if(pg.last)search(pg.last)});
+pg.list.addEventListener('click',e=>{const r=e.target.closest('.card[data-i]');if(r)play(pg.shown,+r.dataset.i)})});
 
-const ROWS=[['Sedang tayang','/top/anime?filter=airing&limit=15&sfw=true'],['Paling populer','/top/anime?filter=bypopularity&limit=15&sfw=true'],['Segera tayang','/seasons/upcoming?limit=15&sfw=true'],['Rating tertinggi','/top/anime?limit=15&sfw=true']];
-let homeReq=0;
-async function loadHome(){const my=++homeReq,box=$('#homeRows');$('#stateH').hidden=true;box.innerHTML=ROWS.map(r=>'<div class="rhead"><h2>'+r[0]+'</h2></div><div class="row">'+Array(6).fill(card(0,1)).join('')+'</div>').join('');
-let ok=0,err=null;for(let i=0;i<ROWS.length;i++){try{const j=await jk(ROWS[i][1]);if(my!==homeReq)return;const l=dedupe((j.data||[]).map(nm));l.forEach(a=>cache[a.id]=a);box.children[i*2+1].innerHTML=l.map(a=>card(a)).join('');ok++}catch(e){err=e;box.children[i*2+1].innerHTML=''}}
-if(!ok){box.innerHTML='';showState($('#stateH'),'fa-triangle-exclamation','Gagal memuat anime',msg(err),'home')}}
-function showState(el,ic,t,p,retry){el.innerHTML='<i class="fa-solid '+ic+'" style="font-size:26px;color:var(--muted)"></i><h3>'+esc(t)+'</h3><p>'+esc(p)+'</p>'+(retry?'<button class="retry grad" data-retry="'+retry+'">Coba lagi</button>':'');el.hidden=false}
-
-let sReq=0,sLast='';
-async function search(v){const my=++sReq;sLast=v;$('#hero').classList.add('compact');$('#head').hidden=true;$('#state').hidden=true;$('#go').disabled=true;$('#go').innerHTML='<i class="fa-solid fa-circle-notch fa-spin"></i>';$('#list').innerHTML=Array(8).fill(card(0,1)).join('');
-try{const j=await jk('/anime?q='+encodeURIComponent(v)+'&limit=24&sfw=true');if(my!==sReq)return;const l=dedupe((j.data||[]).map(nm));l.forEach(a=>cache[a.id]=a);
-if(!l.length){$('#list').innerHTML='';showState($('#state'),'fa-ghost','Anime tidak ditemukan','Coba judul lain atau ejaan romaji.');return}
-$('#ttl').textContent='Hasil untuk “'+v+'”';$('#cnt').textContent=l.length+' anime';$('#head').hidden=false;$('#list').innerHTML=l.map(a=>card(a)).join('')}
-catch(e){if(my!==sReq)return;$('#list').innerHTML='';showState($('#state'),'fa-triangle-exclamation','Gagal memuat hasil',msg(e),'search')}
-finally{if(my===sReq){$('#go').disabled=false;$('#go').textContent='Cari'}}}
-$('#form').addEventListener('submit',e=>{e.preventDefault();const v=$('#q').value.trim();if(v)search(v)});
-$('#q').addEventListener('input',()=>$('#clear').hidden=!$('#q').value);
-$('#clear').addEventListener('click',()=>{$('#q').value='';$('#clear').hidden=true;$('#q').focus()});
-document.addEventListener('click',e=>{const r=e.target.closest('[data-retry]');if(r){if(r.dataset.retry==='home')loadHome();else if(sLast)search(sLast);return}const c=e.target.closest('.ac[data-id]');if(c)openDetail(+c.dataset.id)});
-
-/* ---------- Daftarku (disimpan di browser) ---------- */
-let mem=[];const KEY='aa_list';
-const getL=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(_){return mem}};
-const setL=l=>{mem=l;try{localStorage.setItem(KEY,JSON.stringify(l))}catch(_){}};
-const inL=id=>getL().some(x=>x.id===id);
-function toggleL(a){let l=getL();if(l.some(x=>x.id===a.id)){l=l.filter(x=>x.id!==a.id);toast('Dihapus dari Daftarku')}else{l.unshift({id:a.id,title:a.title,img:a.img,score:a.score,eps:a.eps,type:a.type,year:a.year});toast('Disimpan ke Daftarku')}setL(l)}
-function renderList(){const l=getL();$('#cntD').textContent=l.length?l.length+' anime':'';$('#listD').innerHTML=l.map(a=>card(a)).join('');if(!l.length)showState($('#stateD'),'fa-bookmark','Daftarmu masih kosong','Buka detail anime lalu ketuk “Simpan ke Daftarku”.');else $('#stateD').hidden=true}
-
-/* ---------- detail ---------- */
-const sheet=$('#sheet'),body=$('#shBody');let dReq=0;
-function closeSheet(){sheet.classList.remove('open');document.body.style.overflow='';body.innerHTML=''}
-$('#shClose').addEventListener('click',closeSheet);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
-async function openDetail(id){const my=++dReq,b=cache[id]||getL().find(x=>x.id===id)||{id,title:'Memuat...'};sheet.classList.add('open');document.body.style.overflow='hidden';
-body.innerHTML='<div class="d-top"><div class="poster">'+(b.img?'<img src="'+esc(b.img)+'" alt="">':'')+'</div><div><h2>'+esc(b.title)+'</h2><div class="alt">Memuat detail...</div></div></div>';
-try{const j=await jk('/anime/'+id+'/full');if(my!==dReq)return;const a=j.data,n=nm(a);cache[id]=n;
-const names=[a.title_japanese,a.title].filter(Boolean).filter(x=>x!==n.title).join(' · ');
-const chips=[a.type,a.episodes?a.episodes+' episode':'',a.status==='Currently Airing'?'Sedang tayang':a.status==='Finished Airing'?'Tamat':a.status==='Not yet aired'?'Belum tayang':'',a.year,a.rating&&a.rating.split(' - ')[0]].filter(Boolean).map(c=>'<span class="chip">'+esc(c)+'</span>').join('');
-const gen=(a.genres||[]).map(g=>'<span class="chip">'+esc(g.name)+'</span>').join('');
-const st=(a.streaming||[]).filter(s=>s&&s.url).map(s=>'<a class="btn" href="'+esc(safeUrl(s.url))+'" target="_blank" rel="noopener"><i class="fa-solid fa-play"></i>Tonton di '+esc(s.name)+'<i class="fa-solid fa-arrow-up-right-from-square"></i></a>').join('');
-const yid=a.trailer&&/^[\w-]{11}$/.test(a.trailer.youtube_id||'')?a.trailer.youtube_id:'';
-const yq=encodeURIComponent(n.title+' sub indo');
-body.innerHTML='<div class="d-top"><div class="poster">'+(n.img?'<img src="'+esc(n.img)+'" alt="">':'')+'</div><div><h2>'+esc(n.title)+'</h2><div class="alt">'+esc(names)+'</div><div class="chips">'+(a.score?'<span class="chip hot"><i class="fa-solid fa-star"></i> '+Number(a.score).toFixed(2)+'</span>':'')+chips+'</div></div></div>'
-+(gen?'<div class="chips" style="margin-top:12px">'+gen+'</div>':'')
-+'<div class="d-sec"><div class="btns"><button class="btn p" id="dSave"><i class="fa-solid fa-bookmark"></i><span>'+(inL(id)?'Tersimpan di Daftarku':'Simpan ke Daftarku')+'</span><i></i></button></div></div>'
-+(yid?'<div class="d-sec"><h3>Trailer</h3><div class="trailer" id="tr"><button class="btn" id="trPlay" style="height:100%;width:100%;justify-content:center"><i class="fa-solid fa-circle-play" style="font-size:30px"></i>Putar trailer</button></div></div>':'')
-+'<div class="d-sec"><h3>Tonton secara resmi</h3><div class="btns">'+(st||'<p style="color:var(--muted);font-size:12.5px">Tautan layanan resmi belum tersedia di data.</p>')
-+'<a class="btn" href="https://www.youtube.com/results?search_query='+yq+'" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i>Cari di YouTube (kanal resmi Muse / Ani-One)<i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>'
-+'<div class="d-sec"><h3>Sinopsis</h3><p>'+esc(a.synopsis||'Sinopsis belum tersedia.')+'</p><p style="font-size:11px;color:var(--muted);margin-top:6px">Sumber: MyAnimeList (bahasa Inggris)</p></div>';
-$('#dSave').addEventListener('click',()=>{toggleL(n);$('#dSave span').textContent=inL(id)?'Tersimpan di Daftarku':'Simpan ke Daftarku'});
-const tp=$('#trPlay');if(tp)tp.addEventListener('click',()=>{$('#tr').innerHTML='<iframe src="https://www.youtube.com/embed/'+yid+'?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'})}
-catch(e){if(my!==dReq)return;body.innerHTML+='<div class="state"><i class="fa-solid fa-triangle-exclamation" style="font-size:26px;color:var(--muted)"></i><h3>Gagal memuat detail</h3><p>'+esc(msg(e))+'</p></div>'}}
-
-route();loadHome();
+/* ---------- pemutar (<audio> biasa) ---------- */
+const audio=new Audio();audio.preload='auto';audio.volume=.8;
+let queue=[],idx=-1,cur='',loading=false;
+const pPlay=$('#pPlay'),pPrev=$('#pPrev'),pNext=$('#pNext'),seek=$('#seek'),curT=$('#curT'),totT=$('#totT');
+const fp=$('#fullPlayer'),fpSeek=$('#fpSeek'),fpPlay=$('#fpPlay'),fpCover=$('#fpCover');
+const isPlaying=()=>cur!==''&&!audio.paused&&!audio.ended;
+function play(list,i){const t=list[i];if(!t)return;if(queue===list&&i===idx&&cur===t.id){toggle();return}
+queue=list;idx=i;cur=t.id;loading=true;setInfo(t);paint();audio.src=t.src;audio.play().catch(e=>{if(e&&e.name==='AbortError')return;loading=false;paint();toast('Gagal memutar lagu. Coba lagi.','err')})}
+function toggle(){if(!cur)return;if(audio.paused)audio.play().catch(()=>{});else audio.pause()}
+const next=()=>{if(idx<queue.length-1)play(queue,idx+1)},prev=()=>{if(audio.currentTime>3){audio.currentTime=0;return}if(idx>0)play(queue,idx-1)};
+const ic=(ld,pp)=>ld?'fa-solid fa-circle-notch fa-spin':pp?'fa-solid fa-pause':'fa-solid fa-play';
+function paint(){const pl=isPlaying()&&!loading;
+pages.forEach(pg=>pg.list.querySelectorAll('.card[data-i]').forEach(r=>{const i=+r.dataset.i,act=queue===pg.shown&&i===idx,pp=act&&pl;r.classList.toggle('active',act);r.classList.toggle('playing',pp);const b=r.querySelector('.ib i');if(b)b.className=ic(act&&loading,pp)}));
+const cls=ic(loading,pl);pPlay.querySelector('i').className=cls;fpPlay.innerHTML='<i class="'+cls+'"></i>';
+document.body.classList.toggle('has-player',idx>=0);pPrev.disabled=idx<=0;pNext.disabled=idx<0||idx>=queue.length-1;
+if('mediaSession'in navigator)navigator.mediaSession.playbackState=idx<0?'none':audio.paused?'paused':'playing'}
+function setInfo(t){$('#pTitle').textContent=t.title;$('#pArtist').textContent=t.artist;$('#pCv').innerHTML=t.thumb?'<img src="'+esc(t.thumb)+'" alt="">':'<i class="fa-solid fa-music"></i>';
+seek.value=0;fpSeek.value=0;curT.textContent=$('#fpCur').textContent='0:00';totT.textContent=$('#fpDur').textContent=t.duration||'0:00';
+$('#fpTitle').textContent=t.title;$('#fpArtist').textContent=t.artist;fpCover.src=t.thumb||'';fpCover.style.visibility=t.thumb?'visible':'hidden';document.title=t.title+' - '+t.artist+' | Arya Music';
+if('mediaSession'in navigator&&window.MediaMetadata)navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:t.artist,artwork:t.thumb?[{src:t.thumb,sizes:'480x480'}]:[]});syncQueue()}
+function syncQueue(){$('#fpQueue').innerHTML=queue.slice(idx+1).map((q,n)=>'<div class="fp-qi" data-q="'+(idx+n+1)+'">'+(q.thumb?'<img src="'+esc(q.thumb)+'" alt="">':'<div class="p-cv"><i class="fa-solid fa-music"></i></div>')+'<div>'+esc(q.title)+'<small>'+esc(q.artist)+'</small></div><i class="fa-solid fa-play"></i></div>').join('')||'<p style="color:#9fb4a4;font-size:13px">Tidak ada lagu berikutnya di antrean.</p>'}
+audio.addEventListener('timeupdate',()=>{const d=audio.duration,c=audio.currentTime;curT.textContent=$('#fpCur').textContent=fmt(c);if(d&&isFinite(d)){const v=Math.round(c/d*1000);if(document.activeElement!==seek)seek.value=v;if(document.activeElement!==fpSeek)fpSeek.value=v;
+if('mediaSession'in navigator&&navigator.mediaSession.setPositionState){try{navigator.mediaSession.setPositionState({duration:d,position:Math.min(c,d),playbackRate:1})}catch(_){}}}});
+audio.addEventListener('loadedmetadata',()=>{totT.textContent=$('#fpDur').textContent=fmt(audio.duration)});
+['play','pause'].forEach(ev=>audio.addEventListener(ev,paint));
+audio.addEventListener('waiting',()=>{loading=true;paint()});
+['playing','canplay'].forEach(ev=>audio.addEventListener(ev,()=>{loading=false;paint()}));
+audio.addEventListener('ended',()=>{paint();if(idx<queue.length-1)next()});
+audio.addEventListener('error',()=>{if(!cur)return;loading=false;paint();toast('Lagu ini tidak bisa diputar.','err');if(idx<queue.length-1)next()});
+const doSeek=r=>{const d=audio.duration;if(d&&isFinite(d))audio.currentTime=Number(r.value)/1000*d};
+seek.addEventListener('input',()=>doSeek(seek));fpSeek.addEventListener('input',()=>doSeek(fpSeek));
+pPlay.addEventListener('click',()=>{if(idx>=0)toggle()});fpPlay.addEventListener('click',toggle);
+pPrev.addEventListener('click',prev);pNext.addEventListener('click',next);$('#fpPrev').addEventListener('click',prev);$('#fpNext').addEventListener('click',next);
+$('#fpVolume').addEventListener('input',e=>{audio.volume=Number(e.target.value)/100});
+$('#fpQueue').addEventListener('click',e=>{const r=e.target.closest('[data-q]');if(r)play(queue,+r.dataset.q)});
+$('#fpShuffle').addEventListener('click',()=>{if(queue.length<2)return;const rest=queue.filter((_,i)=>i!==idx).sort(()=>Math.random()-.5);queue=[queue[idx],...rest];idx=0;syncQueue();paint();toast('Antrean diacak')});
+$('#fpRepeat').addEventListener('click',()=>{audio.loop=!audio.loop;$('#fpRepeat').style.color=audio.loop?'#1ed760':'';toast(audio.loop?'Ulangi lagu aktif':'Ulangi lagu nonaktif')});
+const openFull=()=>{if(idx<0)return;fp.classList.add('open');document.body.style.overflow='hidden'},closeFull=()=>{fp.classList.remove('open');document.body.style.overflow=''};
+$('#pInfo').addEventListener('click',openFull);$('#fpClose').addEventListener('click',closeFull);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFull()});
+if('mediaSession'in navigator){try{const ms=navigator.mediaSession;ms.setActionHandler('play',()=>audio.play().catch(()=>{}));ms.setActionHandler('pause',()=>audio.pause());ms.setActionHandler('previoustrack',prev);ms.setActionHandler('nexttrack',next);
+ms.setActionHandler('seekto',e=>{if(e.seekTime!=null)audio.currentTime=e.seekTime});
+ms.setActionHandler('seekbackward',e=>{audio.currentTime=Math.max(0,audio.currentTime-(e.seekOffset||10))});
+ms.setActionHandler('seekforward',e=>{audio.currentTime=audio.currentTime+(e.seekOffset||10)})}catch(_){}}
+paint();loadHome();
 window.addEventListener('load',()=>setTimeout(()=>$('#boot').classList.add('done'),2300),{once:true});setTimeout(()=>$('#boot').classList.add('done'),3500);
 </script>
 </body>
